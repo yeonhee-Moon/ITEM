@@ -72,6 +72,7 @@ function MainTodolist(props) {
     }
   };
 
+  //버튼 값 전송
   const handleUpdateComplete = (id) => {
    axios.put(`http://localhost:3000/todo/updatetodo/${id}`, { completed: true })
         .then(() => {
