@@ -3,12 +3,21 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
 
+
+//const UsernameContext = React.createContext();
+//const MatchingnameContext = React.createContext();
+//const IsAuthorOneContext = React.createContext();
+
 function Login() {
   const [formData, setFormData] = useState({
     userid: '',
     password: ''
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+ // const [username, setUsername] = useState('');
+ // const [isAuthorOne, setIsAuthorOne] = useState(false);
+ // const [isAuthorTwo, setIsAuthorTwo] = useState(false);
+ // const [matchingname, setMatchingname] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -33,7 +42,14 @@ function Login() {
         },
       });
       console.log('서버 응답:', response.data);
-      if (response.data.length !== 0) {
+      //setUsername(response.data.USER_NAME);
+      //setMatchingname(response.data.matchingname);
+      localStorage.setItem('username', response.data.USER_NAME);
+      localStorage.setItem('matchingname', response.data.matchingname);
+      //console.log('서버 응답:', {username});
+      //console.log('서버 응답:', {matchingname});
+      //console.log('서버 응답:', {isAuthorOne});
+      if (response.data.USER_NAME != null || response.data.except === 1) {
         // 로그인 성공
         const expirationTime = new Date().getTime() + 60 * 60 * 1000; // 1시간 후 만료
         localStorage.setItem('isLoggedIn', 'true');
@@ -44,6 +60,19 @@ function Login() {
         setIsLoggedIn(false);
         alert('로그인 실패. 사용자 이름과 비밀번호를 확인하세요.');
       }
+
+      if (response.data.AUTHOR === '1') {
+        localStorage.setItem('isAuthorOne', 'true');
+        //setIsAuthorOne(true);
+      } else if (response.data.AUTHOR === '2'){
+        localStorage.setItem('isAuthorTwo', 'true');
+        //setIsAuthorTwo(true);
+      } else {
+        localStorage.setItem('isAuthorOne', 'false');
+        localStorage.setItem('isAuthorTwo', 'false');
+        //setIsAuthorOne(false);
+        //setIsAuthorTwo(false);
+      }
     } catch (error) {
       console.error('오류 발생:', error);
     }
@@ -52,7 +81,15 @@ function Login() {
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('expirationTime');
+    localStorage.removeItem('isAuthorOne');
+    localStorage.removeItem('isAuthorTwo');
+    localStorage.removeItem('username');
+    localStorage.removeItem('matchingname');
+    
+    
     setIsLoggedIn(false);
+    //setIsAuthorOne(false);
+    //setIsAuthorTwo(false);
   };
 
   useEffect(() => {
@@ -67,12 +104,16 @@ function Login() {
         handleLogout();
       } else {
         setIsLoggedIn(true);
+        //setIsAuthorOne(true);
+        //setIsAuthorTwo(true);
       }
     }
   }, []);
 
   const navigate = useNavigate();
-
+      //<UsernameContext.Provider value={username}/>
+      //<MatchingnameContext.Provider value={matchingname}/>
+      //<IsAuthorOneContext.Provider value={isAuthorOne}/>
   return (
     <div>
       {isLoggedIn ? (

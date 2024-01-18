@@ -6,8 +6,9 @@ import Login from './component/page/join/Login';
 import Join from './component/page/join/Join';
 import FindId from './component/page/join/FindId';
 import ResetPassword from './component/page/join/ResetPassword';
-import Main_todolist from './component/page/main/Main_todolist';
+import MainTodolist from './component/page/main/MainTodolist';
 import Matching from './component/page/main/Matching';
+import Confirm from './component/page/main/Confirm';
 
 
 function App(props) {
@@ -20,8 +21,9 @@ function App(props) {
       <Route path="join" element ={<Join />}/>
       <Route path="findid" element ={<FindId />}/>
       <Route path="reset" element ={<ResetPassword />}/>
-      <Route path="main" element ={<Main_todolist />}/>
+      <Route path="main" element ={<MainTodolist />}/>
       <Route path="matching" element ={<Matching />}/>
+      <Route path="confirm" element ={<Confirm />}/>
     </Routes>
   </BrowserRouter>
   );
