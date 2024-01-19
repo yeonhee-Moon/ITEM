@@ -4,7 +4,7 @@ import ConfirmButton from "../ui/ConfirmButton";
 import TutorButton from "../ui/TutorButton";
 import DeleteButton from "../ui/DeleteButton"
 
-function TodoList({ todos, onTodoClick, onComplete, onShowComplete, onUpdate, updateId, onConfirm, onLine,  onDelete}) {
+function TodoList({ todos, onTodoClick, onClick, onUpdate, updateId, onConfirm, onDelete}) {
 
 
   //line 상태 db에 저장하고 id 에따라 line 상태값 정해지기
@@ -22,11 +22,11 @@ function TodoList({ todos, onTodoClick, onComplete, onShowComplete, onUpdate, up
               onChange={(e) => onUpdate(todo.id, e.target.value)}
             />
           ) : (
-            isLined= todo.line ? (<s>{todo.title}</s>) : (<span onClick={() => onTodoClick(todo.id, todo.title)}>{todo.title}</span>)
+            isLined= todo.line ? (<s>{todo.title}</s>) : (<span onClick={() => onTodoClick(todo.id)}>{todo.title}</span>)
           )}
-          <CompleteButton onClick={() => {onComplete(todo.id); onShowComplete(todo.completed);}}></CompleteButton>
+          <CompleteButton onShowCompleted={() =>(todo.completed)} onClick={() => onClick(todo.id, todo.completed)}></CompleteButton>
           <ConfirmButton onClick={() => onConfirm(todo.id)}></ConfirmButton>
-          <TutorButton onClick={() => onLine(todo.id)}></TutorButton>
+          <TutorButton onShowLined={() =>(todo.lined)} onClick={() => onClick(todo.id, todo.lined)}></TutorButton>
           <DeleteButton onClick={() => onDelete(todo.id)}>Delete</DeleteButton>
         </li>
       ))}

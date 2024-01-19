@@ -37,10 +37,10 @@ function MainTodolist(props) {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   const [updateId, setUpdateId] = useState(null);
-  const [formData, setFormData] = useState({
-    todo: {newTodo},
-    completed: false
-  });
+  // const [formData, setFormData] = useState({
+  //   todo: {newTodo},
+  //   completed: false
+  // });
 
   useEffect(() => {
     // Fetch todos from the backend on component mount using axios
@@ -51,7 +51,7 @@ function MainTodolist(props) {
 
   const handleAddTodo = () => {
     // Add a new todo using axios
-    axios.post('http://localhost:3000/todo/addtodo', { title: newTodo, completed: false })
+    axios.post('http://localhost:3000/todo/addtodo', { title: newTodo, completed: false, lined: false })
       .then((response) => setTodos([...todos, response.data]))
       .catch((error) => console.error('Error adding todo:', error));
 
@@ -61,7 +61,7 @@ function MainTodolist(props) {
   const handleUpdateTodo = (id, e) => {
     setUpdateId(id);
     if (updateId) {
-      axios.put(`http://localhost:3000/todo/updatetodo/${updateId}`, { title: e.target.value, completed: false })
+      axios.put(`http://localhost:3000/todo/updatetodo/${updateId}`, { title: e.target.value })
         .then(() => {
           setUpdateId(null);
           axios.get('http://localhost:3000/todo/gettodo')
@@ -73,8 +73,8 @@ function MainTodolist(props) {
   };
 
   //버튼 값 전송
-  const handleUpdateComplete = (id) => {
-   axios.put(`http://localhost:3000/todo/updatetodo/${id}`, { completed: true })
+  const handleUpdateComplete = (id, completed) => {
+   axios.put(`http://localhost:3000/todo/updatetodo/${id}`, { completed: completed })
         .then(() => {
           axios.get('http://localhost:3000/todo/gettodo')
             .then((response) => setTodos(response.data))
@@ -84,10 +84,20 @@ function MainTodolist(props) {
   
   };
 
-  const handleTodoClick = (id, title) => {
+  const handleUpdateline = (id, lined) => {
+    axios.put(`http://localhost:3000/todo/updatetodo/${id}`, { lined: lined })
+         .then(() => {
+           axios.get('http://localhost:3000/todo/gettodo')
+             .then((response) => setTodos(response.data))
+             .catch((error) => console.error('Error fetching todos:', error));
+         })
+         .catch((error) => console.error('Error updating todo:', error));
+   
+   };
+
+  const handleTodoClick = (id) => {
     if (!updateId) {
       setUpdateId(id);
-      setNewTodo(title);
     }
   };
 
@@ -176,6 +186,7 @@ function MainTodolist(props) {
       <Todolist 
       todos={todos} 
       onComplete={handleUpdateComplete}
+      onLined={handleUpdateline}
       onUpdate={handleUpdateTodo}
       onTodoClick={handleTodoClick}
       onDelete={handleDeleteTodo} 
