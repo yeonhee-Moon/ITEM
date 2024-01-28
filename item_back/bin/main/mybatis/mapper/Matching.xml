@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.item.matching.mapper.MatchingMapper">
+	
+	<update id="authorTutor" parameterType="map">
+        UPDATE user
+        SET AUTHOR = "2"
+        WHERE USER_ID = #{tutorid}
+    </update>
+    
+     <update id="authorTutee" parameterType="map">
+        UPDATE user
+		SET AUTHOR = "1"
+        WHERE USER_ID = #{tuteeid}
+    </update>
+	
+	<update id="matching" parameterType="map">
+        UPDATE user
+        SET TEAM = #{team}
+        WHERE USER_ID IN (#{tutorid}, #{tuteeid})
+    </update>
+    
+	
+</mapper>

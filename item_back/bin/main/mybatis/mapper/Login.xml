@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.item.join.mapper.JoinMapper">
+
+    <select id="login" parameterType="java.util.Map" resultType="java.util.Map">
+         SELECT * FROM user
+         WHERE USER_ID = #{userid} AND PW = #{password}
+    </select>
+    
+     <select id="matchingname" parameterType="java.util.Map" resultType="java.util.Map">
+         SELECT * FROM user
+         WHERE TEAM = #{team} AND USER_ID != #{userid}
+    </select>
+
+</mapper>
