@@ -22,7 +22,7 @@ function TodoList({ todos, onTodoClick, onClick, onUpdate, updateId, onConfirm, 
               onChange={(e) => onUpdate(todo.id, e.target.value)}
             />
           ) : (
-            isLined= todo.line ? (<s>{todo.title}</s>) : (<span onClick={() => onTodoClick(todo.id)}>{todo.title}</span>)
+            todo.line ? (<s>{todo.title}</s>) : (<span onClick={() => onTodoClick(todo.id)}>{todo.title}</span>)
           )}
           <CompleteButton onShowCompleted={() =>(todo.completed)} onClick={() => onClick(todo.id, todo.completed)}></CompleteButton>
           <ConfirmButton onClick={() => onConfirm(todo.id)}></ConfirmButton>

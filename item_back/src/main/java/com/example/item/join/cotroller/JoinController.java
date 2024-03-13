@@ -32,8 +32,7 @@ public class JoinController {
 		param.put("userid", userid);
 		param.put("password", password);
 		param.put("email", email);
-		param.put("team", 0);
-
+		
 		int result = joinService.join(param);
 		
  		return ResponseEntity.ok(result);

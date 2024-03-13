@@ -12,12 +12,19 @@ const StyledButton = styled.button`
   `;
 
 function ConfirmButton(props){
-  
+
+const storedIsAuthorTwo = localStorage.getItem('isAuthorTwo');
+
 const navigate = useNavigate();
 
 const handleConfirm = (id) => {
   <Confirm confirmId={id}/>;
-  navigate("/confirm");
+  
+  storedIsAuthorTwo === 'true' ? (
+    navigate("/confirmList")
+  ) : (
+    navigate("/confirm")
+  );
 };
 
 return (

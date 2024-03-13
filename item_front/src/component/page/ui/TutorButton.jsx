@@ -21,9 +21,9 @@ const showLined = (lined) => {
 };
 
 const handleButtonClick = (lined) => {
-    // 상태를 변경하여 버튼의 스타일을 변경
     setIsButtonClicked(!isButtonClicked);
     lined = !isLined;
+    //lined 값이 바뀐채로 백엔드에 전송될지 확인
   };
 
 

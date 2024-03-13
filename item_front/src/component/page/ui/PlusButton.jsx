@@ -1,7 +1,7 @@
 import React ,{ useState } from 'react';
 
 
-function PlusButton(props){
+function PlusButton({onClick}){
 
   // 버튼의 스타일을 동적으로 설정
 const buttonStyle = {

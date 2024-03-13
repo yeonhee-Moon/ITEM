@@ -14,16 +14,16 @@ function Confirm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/main");
+    navigate("/confirmList");//학생>>제출>>"/제출목록(>>main)" 선생>>바로 제출목록
+
 
     const formDataObject = new FormData();
     formDataObject.append('id', formData.id);
     formDataObject.append('text', formData.text);
     formDataObject.append('image', formData.image);
     
-    // Axios로 POST 요청 보내기
     try {
-      const response = await axios.post('http://localhost:3000/item/join', formDataObject, {
+      const response = await axios.post('http://localhost:3000/item/comfirm', formDataObject, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -56,7 +56,7 @@ function Confirm(props) {
       <div>
         <label>사진:</label>
           <input
-          type="text"
+          type="file"
           name="image"
           value={formData.image}
           onChange={handleChange}

@@ -9,6 +9,7 @@ import ResetPassword from './component/page/join/ResetPassword';
 import MainTodolist from './component/page/main/MainTodolist';
 import Matching from './component/page/main/Matching';
 import Confirm from './component/page/main/Confirm';
+import ConfirmList from './component/page/main/ConfirmList';
 
 
 function App(props) {
@@ -24,6 +25,7 @@ function App(props) {
       <Route path="main" element ={<MainTodolist />}/>
       <Route path="matching" element ={<Matching />}/>
       <Route path="confirm" element ={<Confirm />}/>
+      <Route path="confirmList" element ={<ConfirmList />}/>
     </Routes>
   </BrowserRouter>
   );

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.item.todo.mapper.TodoMapper">
+
+     <select id="getAllTodos" resultType="com.example.item.todo.model.Todo">
+        SELECT * FROM todolist
+    </select>
+
+    <insert id="insertTodo" parameterType="com.example.item.todo.model.Todo">
+		<selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO todolist (TITLE, COMPLETED, LINED) VALUES (#{title}, #{completed}, #{lined})
+    </insert>
+
+    <update id="updateTodo" parameterType="com.example.item.todo.model.Todo">
+        UPDATE todolist SET TITLE = #{title}, COMPLETED = #{completed}, LINED = #{lined} WHERE ID = #{id}
+    </update>
+    
+    <update id="updateComplete" parameterType="com.example.item.todo.model.Todo">
+        UPDATE todolist SET COMPLETED = #{completed} WHERE ID = #{id}
+    </update>
+    
+    <update id="updateLine" parameterType="com.example.item.todo.model.Todo">
+        UPDATE todolist SET LINED = #{lined} WHERE ID = #{id}
+    </update>
+
+    <delete id="deleteTodo" parameterType="String">
+        DELETE FROM todolist WHERE ID = #{id}
+    </delete>
+
+</mapper>
