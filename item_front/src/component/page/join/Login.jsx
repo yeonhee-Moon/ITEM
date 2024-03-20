@@ -63,9 +63,11 @@ function Login() {
 
       if (response.data.AUTHOR === '1') {
         localStorage.setItem('isAuthorOne', 'true');
+        localStorage.setItem('isAuthorTwo', 'false');
         //setIsAuthorOne(true);
       } else if (response.data.AUTHOR === '2'){
         localStorage.setItem('isAuthorTwo', 'true');
+        localStorage.setItem('isAuthorOne', 'false');
         //setIsAuthorTwo(true);
       } else {
         localStorage.setItem('isAuthorOne', 'false');

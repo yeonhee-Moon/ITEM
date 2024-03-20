@@ -1,14 +1,15 @@
-import React ,{ useState } from 'react';
+import React from 'react';
 import CompleteButton from "../ui/CompleteButton";
 import ConfirmButton from "../ui/ConfirmButton";
 import TutorButton from "../ui/TutorButton";
 import DeleteButton from "../ui/DeleteButton"
 
-function TodoList({ todos, onTodoClick, onClick, onUpdate, updateId, onConfirm, onDelete}) {
+function TodoList({ todos, onTodoClick, onComplete, onUpdate, updateId, onLined, onDelete}) {
 
 
-  //line 상태 db에 저장하고 id 에따라 line 상태값 정해지기
+  //line 상태값 가져오기
   //isLined= todo.line ?
+  //completed값 가져와서 나타내기
 
 
   return (
@@ -24,9 +25,11 @@ function TodoList({ todos, onTodoClick, onClick, onUpdate, updateId, onConfirm, 
           ) : (
             todo.line ? (<s>{todo.title}</s>) : (<span onClick={() => onTodoClick(todo.id)}>{todo.title}</span>)
           )}
-          <CompleteButton onShowCompleted={() =>(todo.completed)} onClick={() => onClick(todo.id, todo.completed)}></CompleteButton>
-          <ConfirmButton onClick={() => onConfirm(todo.id)}></ConfirmButton>
-          <TutorButton onShowLined={() =>(todo.lined)} onClick={() => onClick(todo.id, todo.lined)}></TutorButton>
+          {/* <CompleteButton onShowCompleted={() =>(todo.completed)} onClick={() => onCompleteClick(todo.id, todo.completed)}></CompleteButton> */}
+          {/* <CompleteButton onClick={() => {onShowCompleted(todo.completed); onCompleteClick(todo.id, todo.completed);}}></CompleteButton> */}
+          <CompleteButton todo={todo} onClick={() => onComplete(todo.id, todo.completed)}></CompleteButton>
+          <ConfirmButton todo={todo} onClick></ConfirmButton>
+          <TutorButton todo={todo} onClick={() => onLined(todo.id, todo.lined)}></TutorButton>
           <DeleteButton onClick={() => onDelete(todo.id)}>Delete</DeleteButton>
         </li>
       ))}

@@ -1,13 +1,12 @@
 import React ,{ useState } from 'react';
-import Todolist from '../main/Todolist';
 
 function TutorButton(props){
-const [isButtonClicked, setIsButtonClicked] = useState(false);
+const{todo, onClick}= props;
+var linedValue;
+const [isButtonClicked, setIsButtonClicked] = useState(linedValue);
 const [isConditionTrue, setIsConditionTrue] = useState(false);
-const [isLined, setIsLined] = useState(linedValue);
 
 //line 상태 db에 저장하고 id 에따라 line 상태값 정해지기
-
 
 const storedIsAuthorTwo = localStorage.getItem('isAuthorTwo');
 
@@ -16,18 +15,15 @@ if (storedIsAuthorTwo ==='true') {
 };
 
 const showLined = (lined) => {
-  var linedValue;
+  // var linedValue;
   linedValue = lined;
+  console.log('lined : ', lined);
 };
 
-const handleButtonClick = (lined) => {
+const handleButtonClick = () => {
     setIsButtonClicked(!isButtonClicked);
-    lined = !isLined;
-    //lined 값이 바뀐채로 백엔드에 전송될지 확인
   };
 
-
-  // 버튼의 스타일을 동적으로 설정
 const buttonStyle = {
     padding: '10px',
     backgroundColor: isButtonClicked ? 'blue' : 'white',
@@ -37,7 +33,7 @@ const buttonStyle = {
 
   return (
   
-  <button style={buttonStyle} onShowLined={showLined} onClick={() => {handleButtonClick(); onLined(todo.id, todo.lined);}} disabled={isConditionTrue}> GOOD
+  <button style={buttonStyle} onClick={() => {showLined(todo.lined); handleButtonClick(); onClick(); }} disabled={!isConditionTrue}>GOOD
   </button>
 
   );

@@ -12,6 +12,7 @@ const StyledButton = styled.button`
   `;
 
 function ConfirmButton(props){
+const{todo, onClick}= props;
 
 const storedIsAuthorTwo = localStorage.getItem('isAuthorTwo');
 
@@ -29,7 +30,7 @@ const handleConfirm = (id) => {
 
 return (
   
-<StyledButton onConfirm ={handleConfirm}>confirm
+<StyledButton onClick = {() => {handleConfirm(todo.id); onClick(); }}>confirm
 </StyledButton>
 
 );

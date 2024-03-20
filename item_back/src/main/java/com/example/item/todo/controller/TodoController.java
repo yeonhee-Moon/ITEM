@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,14 +43,14 @@ public class TodoController{
         return todo;
     }
 	
-	@PutMapping("/updatecomplete/{id}")
+	@PatchMapping("/updatecomplete/{id}")
 	 public Todo updateComplete(@PathVariable Long id, @RequestBody Todo todo) {
        todo.setId(id);
        todoService.updateComplete(todo);
        return todo;
    }
 	
-	@PutMapping("/updateline/{id}")
+	@PatchMapping("/updateline/{id}")
 	 public Todo updateLine(@PathVariable Long id, @RequestBody Todo todo) {
        todo.setId(id);
        todoService.updateLine(todo);

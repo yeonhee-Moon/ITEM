@@ -59,7 +59,7 @@ function MainTodolist(props) {
   };
 
   const handleUpdateComplete = (id, completed) => {
-   axios.put(`http://localhost:3000/item/updatecomplete/${id}`, { completed: completed })
+   axios.patch(`http://localhost:3000/item/updatecomplete/${id}`, { completed: !completed })
         .then(() => {
           axios.get('http://localhost:3000/item/gettodo')
             .then((response) => setTodos(response.data))
@@ -70,7 +70,7 @@ function MainTodolist(props) {
   };
 
   const handleUpdateLine = (id, lined) => {
-    axios.put(`http://localhost:3000/item/updateline/${id}`, { lined: lined })
+    axios.patch(`http://localhost:3000/item/updateline/${id}`, { lined: !lined })
          .then(() => {
            axios.get('http://localhost:3000/item/gettodo')
              .then((response) => setTodos(response.data))
