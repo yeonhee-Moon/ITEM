@@ -28,6 +28,10 @@ public class TodoService {
         todoMapper.updateComplete(todo);
     }
     
+    public void updateConfirm(Todo todo) {
+        todoMapper.updateConfirm(todo);
+    }
+    
     public void updateLine(Todo todo) {
         todoMapper.updateLine(todo);
     }

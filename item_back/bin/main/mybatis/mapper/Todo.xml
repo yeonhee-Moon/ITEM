@@ -13,22 +13,26 @@
 		<selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
-        INSERT INTO todolist (TITLE, COMPLETED, LINED) VALUES (#{title}, #{completed}, #{lined})
+        INSERT INTO todolist (TITLE, COMPLETED, CONFIRMED, LINED) VALUES (#{title}, #{completed}, #{confirmed}, #{lined})
     </insert>
 
     <update id="updateTodo" parameterType="com.example.item.todo.model.Todo">
-        UPDATE todolist SET TITLE = #{title}, COMPLETED = #{completed}, LINED = #{lined} WHERE ID = #{id}
+        UPDATE todolist SET TITLE = #{title}, COMPLETED = #{completed}, CONFIRMED = #{confirmed}, LINED = #{lined} WHERE ID = #{id}
     </update>
     
     <update id="updateComplete" parameterType="com.example.item.todo.model.Todo">
         UPDATE todolist SET COMPLETED = #{completed} WHERE ID = #{id}
     </update>
     
+    <update id="updateConfirm" parameterType="com.example.item.todo.model.Todo">
+        UPDATE todolist SET CONFIRMED = #{confirmed} WHERE ID = #{id}
+    </update>
+    
     <update id="updateLine" parameterType="com.example.item.todo.model.Todo">
         UPDATE todolist SET LINED = #{lined} WHERE ID = #{id}
     </update>
 
-    <delete id="deleteTodo" parameterType="String">
+    <delete id="deleteTodo" parameterType="Long">
         DELETE FROM todolist WHERE ID = #{id}
     </delete>
 

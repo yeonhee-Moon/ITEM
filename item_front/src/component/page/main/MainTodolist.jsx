@@ -27,7 +27,6 @@ function MainTodolist(props) {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   const [updateId, setUpdateId] = useState(null);
- 
 
   useEffect(() => {
     // Fetch todos from the backend on component mount using axios
@@ -36,18 +35,19 @@ function MainTodolist(props) {
       .catch((error) => console.error('Error fetching todos:', error));
   }, []);
 
+
   const handleAddTodo = () => {
-    axios.post('http://localhost:3000/item/addtodo', { title: newTodo, completed: false, lined: false })
+    axios.post('http://localhost:3000/item/addtodo', { title: newTodo, completed: false, confirmed: false, lined: false })
       .then((response) => setTodos([...todos, response.data]))
       .catch((error) => console.error('Error adding todo:', error));
 
     setNewTodo('');
   };
 
-  const handleUpdateTodo = (id, e) => {
+  const handleUpdateTodo = (id, title) => {
     setUpdateId(id);
     if (updateId) {
-      axios.put(`http://localhost:3000/item/updatetodo/${updateId}`, { title: e.target.value, completed: false, lined: false})
+      axios.put(`http://localhost:3000/item/updatetodo/${updateId}`, { title: title, completed: false, confirmed: false,  lined: false})
         .then(() => {
           setUpdateId(null);
           axios.get('http://localhost:3000/item/gettodo')
@@ -69,6 +69,17 @@ function MainTodolist(props) {
   
   };
 
+  const handleUpdateConfirm = (id, confirmed) => {
+    axios.patch(`http://localhost:3000/item/updateconfirm/${id}`, { confirmed: !confirmed })
+         .then(() => {
+           axios.get('http://localhost:3000/item/gettodo')
+             .then((response) => setTodos(response.data))
+             .catch((error) => console.error('Error fetching todos:', error));
+         })
+         .catch((error) => console.error('Error updating todo:', error));
+   
+   };
+
   const handleUpdateLine = (id, lined) => {
     axios.patch(`http://localhost:3000/item/updateline/${id}`, { lined: !lined })
          .then(() => {
@@ -87,7 +98,7 @@ function MainTodolist(props) {
   };
 
   const handleDeleteTodo = (id) => {
-    axios.delete(`http://localhost:3000/ite/deletetodo/${id}`)
+    axios.delete(`http://localhost:3000/item/deletetodo/${id}`)
       .then(() => setTodos(todos.filter((todo) => todo.id !== id)))
       .catch((error) => console.error('Error deleting todo:', error));
   };
@@ -128,6 +139,7 @@ function MainTodolist(props) {
       <Todolist 
       todos={todos} 
       onComplete={handleUpdateComplete}
+      onConfirm={handleUpdateConfirm}
       onLined={handleUpdateLine}
       onUpdate={handleUpdateTodo}
       onTodoClick={handleTodoClick}

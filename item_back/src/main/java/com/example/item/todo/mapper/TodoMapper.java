@@ -12,6 +12,7 @@ public interface TodoMapper {
     void insertTodo(Todo todo);
     void updateTodo(Todo todo);
     void updateComplete(Todo todo);
+    void updateConfirm(Todo todo);
     void updateLine(Todo todo);
     void deleteTodo(Long id);
 }

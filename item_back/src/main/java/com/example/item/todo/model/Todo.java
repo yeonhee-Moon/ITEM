@@ -4,6 +4,7 @@ public class Todo {
 	private Long id;
     private String title;
     private boolean completed;
+    private boolean confirmed;
     private boolean lined;
     
     public Long getId() {
@@ -24,12 +25,19 @@ public class Todo {
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
 	}
+	public boolean isConfirmed() {
+		return confirmed;
+	}
+	public void setConfirmed(boolean confirmed) {
+		this.confirmed = confirmed;
+	}
 	public boolean isLined() {
 		return lined;
 	}
 	public void setLined(boolean lined) {
 		this.lined = lined;
 	}
+	
 	
     
 }

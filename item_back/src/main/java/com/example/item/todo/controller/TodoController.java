@@ -50,6 +50,13 @@ public class TodoController{
        return todo;
    }
 	
+	@PatchMapping("/updateconfirm/{id}")
+	 public Todo updateConfirm(@PathVariable Long id, @RequestBody Todo todo) {
+      todo.setId(id);
+      todoService.updateConfirm(todo);
+      return todo;
+	}
+	
 	@PatchMapping("/updateline/{id}")
 	 public Todo updateLine(@PathVariable Long id, @RequestBody Todo todo) {
        todo.setId(id);

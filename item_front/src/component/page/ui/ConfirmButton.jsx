@@ -1,18 +1,16 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Confirm from '../main/Confirm';
 
-const StyledButton = styled.button`
-  border-width: 1px;
-  padding: 10px;
-  backgroundColor: orange;
-  color: black;
-  cursor: pointer;
-  `;
-
 function ConfirmButton(props){
-const{todo, onClick}= props;
+const{todo, confirmed, onClick}= props;
+var confirmedValue;
+  confirmedValue = confirmed;
+const [isButtonClicked, setIsButtonClicked] = useState(confirmedValue);
+
+const handleButtonClick = () => {
+  setIsButtonClicked(!isButtonClicked);
+};
 
 const storedIsAuthorTwo = localStorage.getItem('isAuthorTwo');
 
@@ -28,11 +26,17 @@ const handleConfirm = (id) => {
   );
 };
 
+const buttonStyle = {
+  padding: '10px',
+  backgroundColor: isButtonClicked ? 'orange' : 'white',
+  color: 'black',
+  cursor: 'pointer',
+};
+
 return (
   
-<StyledButton onClick = {() => {handleConfirm(todo.id); onClick(); }}>confirm
-</StyledButton>
-
+<button style={buttonStyle} onClick = {() => {handleConfirm(todo.id); handleButtonClick(); onClick();}}>CONFIRM
+</button>
 );
 
 };

@@ -17,7 +17,7 @@ function DeleteButton(props){
 
   return (
 
-  <StyledButton onClick={onClick}>delete</StyledButton>
+  <StyledButton onClick={onClick}>DELETE</StyledButton>
   
   );
 
