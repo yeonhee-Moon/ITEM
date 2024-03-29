@@ -35,7 +35,6 @@ function MainTodolist(props) {
       .catch((error) => console.error('Error fetching todos:', error));
   }, []);
 
-
   const handleAddTodo = () => {
     axios.post('http://localhost:3000/item/addtodo', { title: newTodo, completed: false, confirmed: false, lined: false })
       .then((response) => setTodos([...todos, response.data]))
@@ -44,10 +43,10 @@ function MainTodolist(props) {
     setNewTodo('');
   };
 
-  const handleUpdateTodo = (id, title) => {
-    setUpdateId(id);
+  const handleUpdateTodo = (updateTodo) => {
+    setUpdateId(updateTodo.id);
     if (updateId) {
-      axios.put(`http://localhost:3000/item/updatetodo/${updateId}`, { title: title, completed: false, confirmed: false,  lined: false})
+      axios.put(`http://localhost:3000/item/updatetodo/${updateId}`, { title: updateTodo.title, completed: false, confirmed: false,  lined: false})
         .then(() => {
           setUpdateId(null);
           axios.get('http://localhost:3000/item/gettodo')
@@ -138,6 +137,7 @@ function MainTodolist(props) {
       <PlusButton onClick={handleAddTodo}></PlusButton>
       <Todolist 
       todos={todos} 
+      updateTodo={handleUpdateTodo}
       onComplete={handleUpdateComplete}
       onConfirm={handleUpdateConfirm}
       onLined={handleUpdateLine}
