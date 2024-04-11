@@ -14,13 +14,13 @@ function UpdateInput({todo, updateTodo}) {
             id: editedTodo.id,
             title: editedTodo.title
           });
-          setEditedTodo({ id: null, title: '' });
           } else {
             updateTodo({
             id: editedTodo.id,
             title: todo.title
-          });
-          setEditedTodo({ id: null, title: '' });}
+            });
+          }
+        setEditedTodo({ id: null, title: '' });
         }
       };
   
@@ -30,7 +30,7 @@ function UpdateInput({todo, updateTodo}) {
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
       };
-    }, [editedTodo, updateTodo]);
+    }, [editedTodo, todo.title, updateTodo]);
   
     const handleChange = (event, todo) => {
       setEditedTodo({

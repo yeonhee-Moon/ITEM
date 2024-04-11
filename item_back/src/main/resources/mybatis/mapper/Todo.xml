@@ -5,7 +5,7 @@
 
 <mapper namespace="com.example.item.todo.mapper.TodoMapper">
 
-     <select id="getAllTodos" resultType="com.example.item.todo.model.Todo">
+    <select id="getAllTodos" resultType="com.example.item.todo.model.Todo">
         SELECT * FROM todolist
     </select>
 
