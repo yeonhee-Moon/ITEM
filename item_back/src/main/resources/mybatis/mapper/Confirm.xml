@@ -5,7 +5,7 @@
 
 <mapper namespace="com.example.item.confirm.mapper.ConfirmMapper">
 
-    <select id="getImageInfoById" parameterType="int" resultType="com.example.model.Confirm">
+    <select id="getImageInfoById" parameterType="Long" resultType="com.example.model.Confirm">
         SELECT image, descript
         FROM confirmlist
         WHERE id = #{id}
