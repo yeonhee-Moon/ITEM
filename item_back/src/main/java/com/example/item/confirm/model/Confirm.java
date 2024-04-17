@@ -4,6 +4,11 @@ public class Confirm {
 	private Long id;
 	private byte[] image;
     private String descript;
+    
+	public Confirm(Long id2, byte[] imageData, String descript2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public byte[] getImage() {
 		return image;
 	}

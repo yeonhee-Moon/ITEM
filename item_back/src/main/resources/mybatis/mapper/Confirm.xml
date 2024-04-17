@@ -5,6 +5,12 @@
 
 <mapper namespace="com.example.item.confirm.mapper.ConfirmMapper">
 
+	<update id="saveConfirm" parameterType="com.example.model.Confirm">
+        UPDATE confirmlist 
+        SET IMAGE = #{imageData}, DESCRIPT = #{descript} 
+        WHERE ID = #{id}
+    </update>
+
     <select id="getImageInfoById" parameterType="Long" resultType="com.example.model.Confirm">
         SELECT image, descript
         FROM confirmlist

@@ -2,15 +2,15 @@
 import React, { useState, useEffect  } from 'react';
 import axios from 'axios';
 
-const ConfirmList = () => {
-  const [image, setImage] = useState(null);
+function ConfirmList ({condition}){
+  // const [image, setImage] = useState(null);
   const [imageInfo, setImageInfo] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchImageInfo = async () => {
       try {
-        const response = await axios.get(`http://your-java-backend-api/image/${id}`);
+        const response = await axios.get(`http://localhost:3000/item/comfirmlist/${id}`);
         setImageInfo(response.data);
         setLoading(false);
       } catch (error) {
@@ -19,7 +19,7 @@ const ConfirmList = () => {
     };
 
     fetchImageInfo();
-  }, []);
+  }, [condition]);
 
   if (loading) return <div>Loading...</div>;
   if (!imageInfo) return <div>No data found</div>;
@@ -38,23 +38,25 @@ const ConfirmList = () => {
   //     });
   // };
 
-  const handleImageChange = (event) => {
-    const selectedImage = event.target.files[0];
-    setImage(selectedImage);
-  };
 
-  const handleUpload = () => {
-    const formData = new FormData();
-    formData.append('image', image);
 
-    axios.post('http://localhost:3000/item/comfirmlist', formData)
-      .then(response => {
-        console.log('Image uploaded successfully:', response.data);
-      })
-      .catch(error => {
-        console.error('Error uploading image:', error);
-      });
-  };
+  // const handleImageChange = (event) => {
+  //   const selectedImage = event.target.files[0];
+  //   setImage(selectedImage);
+  // };
+
+  // const handleUpload = () => {
+  //   const formData = new FormData();
+  //   formData.append('image', image);
+
+  //   axios.post('http://localhost:3000/item/comfirmlist', formData)
+  //     .then(response => {
+  //       console.log('Image uploaded successfully:', response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error uploading image:', error);
+  //     });
+  // };
 
     return (
   
@@ -71,10 +73,10 @@ const ConfirmList = () => {
       {image && <img src={image} alt="Fetched Image" />}
       </div> */}
 
-      <div>
+      {/* <div>
       <input type="file" onChange={handleImageChange} />
       <button onClick={handleUpload}>Upload Image</button>
-      </div>
+      </div> */}
       </div>
     )
   };

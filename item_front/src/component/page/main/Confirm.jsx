@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import ConfirmList from './ConfirmList';
+
 
 function Confirm(props) {
   const{confirmId}= props;
@@ -42,6 +44,7 @@ function Confirm(props) {
   };
 
   return (
+    <div>
     <form onSubmit={handleSubmit}>
        <h1>확인해주세요~!</h1>
       <div>
@@ -63,7 +66,10 @@ function Confirm(props) {
           />
         </div>
       <button type="submit">제출</button>
+      <button type="submit">수정</button>
     </form>
+    <ConfirmList condition={handleSubmit}/>
+    </div>
   );
 }
 
