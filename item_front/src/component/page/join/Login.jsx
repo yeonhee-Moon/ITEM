@@ -29,6 +29,8 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    localStorage.setItem('userid', formData.userid);
+
     const formDataObject = new FormData();
 
     formDataObject.append('userid', formData.userid);
@@ -49,16 +51,16 @@ function Login() {
       //console.log('서버 응답:', {username});
       //console.log('서버 응답:', {matchingname});
       //console.log('서버 응답:', {isAuthorOne});
-      if (response.data.USER_NAME != null || response.data.except === 1) {
+      if (response.data.except === 1) {
+        // 로그인 실패
+        setIsLoggedIn(false);
+        alert('로그인 실패. 사용자 이름과 비밀번호를 확인하세요.');
+        } else {
         // 로그인 성공
         const expirationTime = new Date().getTime() + 60 * 60 * 1000; // 1시간 후 만료
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('expirationTime', expirationTime);
         setIsLoggedIn(true);
-      } else {
-        // 로그인 실패
-        setIsLoggedIn(false);
-        alert('로그인 실패. 사용자 이름과 비밀번호를 확인하세요.');
       }
 
       if (response.data.AUTHOR === '1') {
@@ -80,6 +82,8 @@ function Login() {
     }
   };
 
+  const storedUserid = localStorage.getItem('userid');
+  
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('expirationTime');
@@ -87,6 +91,7 @@ function Login() {
     localStorage.removeItem('isAuthorTwo');
     localStorage.removeItem('username');
     localStorage.removeItem('matchingname');
+    localStorage.removeItem('userid');
     
     
     setIsLoggedIn(false);
@@ -121,7 +126,7 @@ function Login() {
       {isLoggedIn ? (
         <div>
           <h1>로그인 성공!</h1>
-          <p>환영합니다, {formData.userid}님.</p>
+          <p>환영합니다, {storedUserid}님.</p>
           <Button title="HOME"
             onClick={() => {
                 navigate("/main");

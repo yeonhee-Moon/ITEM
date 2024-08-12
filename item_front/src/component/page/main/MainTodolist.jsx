@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import PlusButton from "../ui/PlusButton";
 import Button from "../ui/Button"
-import Todolist from './Todolist';
+import Todolist from "./Todolist"
 //import { useContext } from "react";
 
 
@@ -20,6 +20,7 @@ function MainTodolist(props) {
   const username = localStorage.getItem('username');
   const matchingname = localStorage.getItem('matchingname');
   const isAuthorOne = localStorage.getItem('isAuthorOne');
+  const isAuthorTwo = localStorage.getItem('isAuthorTwo');
   //const username =useContext(UsernameContext);
   //const matchingname =useContext(MatchingnameContext);
   //const isAuthorOne =useContext(IsAuthorOneContext);
@@ -126,7 +127,8 @@ function MainTodolist(props) {
       navigate("/matching");
       }}
     />
-  
+   {((isAuthorOne ==='false') && (isAuthorTwo ==='false')) ? null : (<p>{username}  {isAuthorOne==='true'? '튜티' : '튜터'}</p>)}
+   {matchingname !=='매칭해주세요'? (<p>{matchingname}  {isAuthorOne==='true'? '튜터' : '튜티'}</p>) : <p>{username} 님 매칭해주세요</p>}
   <div>
       <h1>Todo List</h1>
       <input
@@ -146,9 +148,6 @@ function MainTodolist(props) {
       onDelete={handleDeleteTodo} 
       updateId={updateId}/>
   </div>
-  
-  {username !=='undefined'? (<p>{username}  {isAuthorOne==='true'? '튜티' : '튜터'}</p>): null}
-  {matchingname !=='undefined'? (<p>{matchingname}  {isAuthorOne==='true'? '튜터' : '튜티'}</p>) : null}
   </div>
   );
 }

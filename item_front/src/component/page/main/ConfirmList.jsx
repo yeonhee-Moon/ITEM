@@ -2,7 +2,7 @@
 import React, { useState, useEffect  } from 'react';
 import axios from 'axios';
 
-function ConfirmList ({condition}){
+function ConfirmList ({condition , confirmId}){
   // const [image, setImage] = useState(null);
   const [imageInfo, setImageInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,7 +10,7 @@ function ConfirmList ({condition}){
   useEffect(() => {
     const fetchImageInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/item/comfirmlist/${id}`);
+        const response = await axios.get(`http://localhost:3000/item/confirmlist/${confirmId}`);
         setImageInfo(response.data);
         setLoading(false);
       } catch (error) {
@@ -40,10 +40,10 @@ function ConfirmList ({condition}){
 
 
 
-  // const handleImageChange = (event) => {
-  //   const selectedImage = event.target.files[0];
-  //   setImage(selectedImage);
-  // };
+  ///// const handleImageChange = (event) => {
+  /////   const selectedImage = event.target.files[0];
+  /////   setImage(selectedImage);
+  ///// };
 
   // const handleUpload = () => {
   //   const formData = new FormData();
@@ -74,7 +74,7 @@ function ConfirmList ({condition}){
       </div> */}
 
       {/* <div>
-      <input type="file" onChange={handleImageChange} />
+      //////<input type="file" onChange={handleImageChange} />
       <button onClick={handleUpload}>Upload Image</button>
       </div> */}
       </div>

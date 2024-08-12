@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import ConfirmList from './ConfirmList';
 
 
 function Confirm(props) {
   const{confirmId}= props;
+  const [image, setImage] = useState(null);
   const [formData, setFormData] = useState({
     id: {confirmId},
     text: '',
     image:''
   });
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/confirmList");//학생>>제출>>"/제출목록(>>main)" 선생>>바로 제출목록
-
 
     const formDataObject = new FormData();
     formDataObject.append('id', formData.id);
@@ -25,7 +21,7 @@ function Confirm(props) {
     formDataObject.append('image', formData.image);
     
     try {
-      const response = await axios.post('http://localhost:3000/item/comfirm', formDataObject, {
+      const response = await axios.post('http://localhost:3000/item/confirm', formDataObject, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -42,6 +38,18 @@ function Confirm(props) {
       [e.target.name]: e.target.value,
     });
   };
+
+   const handleImageChange = (e) => {
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+
+    const selectedImage = e.target.files[0];
+    setImage(selectedImage);
+
+   };
 
   return (
     <div>
@@ -62,8 +70,9 @@ function Confirm(props) {
           type="file"
           name="image"
           value={formData.image}
-          onChange={handleChange}
+          onChange={handleImageChange}
           />
+          {image && <img src={image} alt="Fetched Image" />}
         </div>
       <button type="submit">제출</button>
       <button type="submit">수정</button>

@@ -40,6 +40,10 @@ public class JoinController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> itemLogin(String userid, String password) {
+		Object valueName = null;
+		Object valueAuthor = null;
+		Object valueMatching = null;
+		Map<String, Object> responseData = new HashMap<>();
 		
 		try {
 			Map<String, Object> param = new HashMap<>();
@@ -52,29 +56,49 @@ public class JoinController {
 	
 			Map<String, Object> result = joinService.login(param);
 			
-			Object valueName = result.get("USER_NAME");
-			Object valueAuthor = result.get("AUTHOR");
+			valueName = result.get("USER_NAME");
+			valueAuthor = result.get("AUTHOR");
 			Object valueTeam = result.get("TEAM");
 			
-			System.out.println("team" + valueTeam);
+//			if (valueName != null && valueAuthor == null) {
+//				valueAuthor =3;
+//				valueTeam = 0;
+//			}
+			
+			System.out.println("team: " + valueTeam);
 			param.put("team", valueTeam);
 			
 			Map<String, Object> resultMatching = joinService.matchingname(param);
-			Object valueMatching = resultMatching.get("USER_NAME");
+			valueMatching = resultMatching.get("USER_NAME");
 		
-			Map<String, Object> responseData = new HashMap<>();
+//			if(valueMatching == null) {
+//				valueMatching = "매칭해주세요";
+//			}
+			
 	        responseData.put("USER_NAME", valueName);
 	        responseData.put("AUTHOR", valueAuthor);
 	        responseData.put("matchingname", valueMatching);
 
+	    
+	        	
 	        return ResponseEntity.ok(responseData);
 		    // NullPointerException이 발생할 수 있는 코드
 		    // 예를 들어, 어떤 객체의 메서드나 속성을 호출하는 경우
 		    // 그 객체가 null이라면 NullPointerException이 발생할 수 있음
 		} catch (NullPointerException e) {
-		    // NullPointerException이 발생했을 때 처리할 코드
+			// NullPointerException이 발생했을 때 처리할 코드
 		    // 여기에는 아무런 동작이나 로깅 등을 할 수 있음
 		    // 아무것도 하지 않고 무시하려면 비워둘 수도 있음
+	        if(valueName != null && valueAuthor == null) {
+	        	valueAuthor =3;
+	        	valueMatching = "매칭해주세요";
+	        	
+		        responseData.put("USER_NAME", valueName);
+		        responseData.put("AUTHOR", valueAuthor);
+		        responseData.put("matchingname", valueMatching);
+		        return ResponseEntity.ok(responseData);
+	        }
+		
 			int exceptInt = 1;
 			Map<String, Object> except = new HashMap<>();
 			except.put("except", exceptInt);

@@ -5,15 +5,15 @@
 
 <mapper namespace="com.example.item.confirm.mapper.ConfirmMapper">
 
-	<update id="saveConfirm" parameterType="com.example.model.Confirm">
+	<update id="saveConfirm" parameterType="com.example.item.confirm.model.Confirm">
         UPDATE confirmlist 
         SET IMAGE = #{imageData}, DESCRIPT = #{descript} 
         WHERE ID = #{id}
     </update>
 
-    <select id="getImageInfoById" parameterType="Long" resultType="com.example.model.Confirm">
-        SELECT image, descript
+    <select id="getImageInfoById" parameterType="Long" resultType="com.example.item.confirm.model.Confirm">
+        SELECT IMAGE, DESCRIPT
         FROM confirmlist
-        WHERE id = #{id}
+        WHERE ID = #{id}
     </select>
 </mapper>
