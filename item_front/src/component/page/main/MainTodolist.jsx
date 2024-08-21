@@ -17,6 +17,7 @@ function MainTodolist(props) {
   
   const navigate = useNavigate();
 
+  const storedTeam = localStorage.getItem('team');
   const username = localStorage.getItem('username');
   const matchingname = localStorage.getItem('matchingname');
   const isAuthorOne = localStorage.getItem('isAuthorOne');
@@ -30,14 +31,13 @@ function MainTodolist(props) {
   const [updateId, setUpdateId] = useState(null);
 
   useEffect(() => {
-    // Fetch todos from the backend on component mount using axios
-    axios.get('http://localhost:3000/item/gettodo')
+    axios.get(`http://localhost:3000/item/gettodo/${storedTeam}`)
       .then((response) => setTodos(response.data))
       .catch((error) => console.error('Error fetching todos:', error));
   }, []);
 
   const handleAddTodo = () => {
-    axios.post('http://localhost:3000/item/addtodo', { title: newTodo, completed: false, confirmed: false, lined: false })
+    axios.post('http://localhost:3000/item/addtodo', { title: newTodo, completed: false, confirmed: false, lined: false, team: storedTeam})
       .then((response) => setTodos([...todos, response.data]))
       .catch((error) => console.error('Error adding todo:', error));
 
@@ -50,7 +50,7 @@ function MainTodolist(props) {
       axios.put(`http://localhost:3000/item/updatetodo/${updateId}`, { title: updateTodo.title, completed: false, confirmed: false,  lined: false})
         .then(() => {
           setUpdateId(null);
-          axios.get('http://localhost:3000/item/gettodo')
+          axios.get(`http://localhost:3000/item/gettodo/${storedTeam}`)
             .then((response) => setTodos(response.data))
             .catch((error) => console.error('Error fetching todos:', error));
         })
@@ -61,7 +61,7 @@ function MainTodolist(props) {
   const handleUpdateComplete = (id, completed) => {
    axios.patch(`http://localhost:3000/item/updatecomplete/${id}`, { completed: !completed })
         .then(() => {
-          axios.get('http://localhost:3000/item/gettodo')
+          axios.get(`http://localhost:3000/item/gettodo/${storedTeam}`)
             .then((response) => setTodos(response.data))
             .catch((error) => console.error('Error fetching todos:', error));
         })
@@ -72,7 +72,7 @@ function MainTodolist(props) {
   const handleUpdateConfirm = (id, confirmed) => {
     axios.patch(`http://localhost:3000/item/updateconfirm/${id}`, { confirmed: !confirmed })
          .then(() => {
-           axios.get('http://localhost:3000/item/gettodo')
+           axios.get(`http://localhost:3000/item/gettodo/${storedTeam}`)
              .then((response) => setTodos(response.data))
              .catch((error) => console.error('Error fetching todos:', error));
          })
@@ -83,7 +83,7 @@ function MainTodolist(props) {
   const handleUpdateLine = (id, lined) => {
     axios.patch(`http://localhost:3000/item/updateline/${id}`, { lined: !lined })
          .then(() => {
-           axios.get('http://localhost:3000/item/gettodo')
+           axios.get(`http://localhost:3000/item/gettodo/${storedTeam}`)
              .then((response) => setTodos(response.data))
              .catch((error) => console.error('Error fetching todos:', error));
          })
@@ -127,9 +127,14 @@ function MainTodolist(props) {
       navigate("/matching");
       }}
     />
-   {((isAuthorOne ==='false') && (isAuthorTwo ==='false')) ? null : (<p>{username}  {isAuthorOne==='true'? '튜티' : '튜터'}</p>)}
-   {matchingname !=='매칭해주세요'? (<p>{matchingname}  {isAuthorOne==='true'? '튜터' : '튜티'}</p>) : <p>{username} 님 매칭해주세요</p>}
-  <div>
+    <div>
+    {((isAuthorOne ==='false') && (isAuthorTwo ==='false')) ? null : (<p>{username}  {isAuthorOne==='true'? '튜티' : '튜터'}</p>)}
+    {matchingname !=='매칭해주세요'? (<p>{matchingname}  {isAuthorOne==='true'? '튜터' : '튜티'}</p>) : <p>{username} 님 매칭해주세요</p>}
+    </div>
+    
+  {storedTeam === '0'? ( null
+  ) : (
+    <div>
       <h1>Todo List</h1>
       <input
         type="text"
@@ -143,11 +148,12 @@ function MainTodolist(props) {
       onComplete={handleUpdateComplete}
       onConfirm={handleUpdateConfirm}
       onLined={handleUpdateLine}
-      onUpdate={handleUpdateTodo}
+      // onUpdate={handleUpdateTodo}
       onTodoClick={handleTodoClick}
       onDelete={handleDeleteTodo} 
       updateId={updateId}/>
-  </div>
+    </div>
+  )}
   </div>
   );
 }

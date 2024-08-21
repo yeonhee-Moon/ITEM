@@ -1,16 +1,20 @@
 //get blob main으로 돌아가기버튼
 import React, { useState, useEffect  } from 'react';
 import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
 
-function ConfirmList ({condition , confirmId}){
+function ConfirmList (props){
+  const {condition}= props;
   // const [image, setImage] = useState(null);
   const [imageInfo, setImageInfo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get('paramName');
 
   useEffect(() => {
     const fetchImageInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/item/confirmlist/${confirmId}`);
+        const response = await axios.get(`http://localhost:3000/item/confirmlist/${id}`);
         setImageInfo(response.data);
         setLoading(false);
       } catch (error) {
@@ -65,7 +69,7 @@ function ConfirmList ({condition , confirmId}){
 
       <div>
       <img src={`data:image/jpeg;base64,${imageInfo.imageData}`} alt="Image" />
-      <p>{imageInfo.description}</p>
+      <p>{imageInfo.descript}</p>
       </div>
 
       {/* <div>

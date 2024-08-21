@@ -25,9 +25,9 @@ public class TodoController{
 	private TodoService todoService;
 	
 	
-	@GetMapping("/gettodo")
-	public List<Todo> getAllTodos() {
-        return todoService.getAllTodos();
+	@GetMapping("/gettodo/{storedTeam}")
+	public List<Todo> getAllTodos(@PathVariable Long storedTeam) {
+        return todoService.getAllTodos(storedTeam);
 	}
 	
 	@PostMapping("/addtodo")

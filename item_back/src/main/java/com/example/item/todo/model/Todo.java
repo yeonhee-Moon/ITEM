@@ -6,6 +6,7 @@ public class Todo {
     private boolean completed;
     private boolean confirmed;
     private boolean lined;
+    private String team;
     
     public Long getId() {
 		return id;
@@ -37,6 +38,14 @@ public class Todo {
 	public void setLined(boolean lined) {
 		this.lined = lined;
 	}
+	public String getTeam() {
+		return team;
+	}
+	public void setTeam(String team) {
+		this.team = team;
+	}
+	
+	
 	
 	
     

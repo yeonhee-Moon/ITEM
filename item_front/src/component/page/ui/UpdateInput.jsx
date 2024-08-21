@@ -10,7 +10,7 @@ function UpdateInput({todo, updateTodo}) {
         if (inputRef.current && !inputRef.current.contains(event.target)) {
           // 입력 필드 외부를 클릭한 경우에만 처리
           if (editedTodo.id !== null) {
-          updateTodo({
+            updateTodo({
             id: editedTodo.id,
             title: editedTodo.title
           });

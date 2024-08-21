@@ -7,7 +7,9 @@ import com.example.item.confirm.model.Confirm;
 @Mapper
 public interface ConfirmMapper {
 	
-	void saveConfirm(Confirm confirm);
+	void insertConfirm(Confirm confirm);
+	
+	void updateConfirm(Confirm confirm);
 	
 	Confirm getImageInfoById(Long id);
 }

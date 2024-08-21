@@ -12,8 +12,8 @@ public class TodoService {
     @Autowired
     private TodoMapper todoMapper;
 
-    public List<Todo> getAllTodos() {
-        return todoMapper.getAllTodos();
+    public List<Todo> getAllTodos(Long storedTeam) {
+        return todoMapper.getAllTodos(storedTeam);
     }
 
     public void insertTodo(Todo todo) {

@@ -32,6 +32,7 @@ public class JoinController {
 		param.put("userid", userid);
 		param.put("password", password);
 		param.put("email", email);
+		param.put("team", 0);
 		
 		int result = joinService.join(param);
 		
@@ -60,27 +61,27 @@ public class JoinController {
 			valueAuthor = result.get("AUTHOR");
 			Object valueTeam = result.get("TEAM");
 			
-//			if (valueName != null && valueAuthor == null) {
-//				valueAuthor =3;
-//				valueTeam = 0;
-//			}
+			int value = (Integer) valueTeam;
 			
+			if (value != 0) {
 			System.out.println("team: " + valueTeam);
 			param.put("team", valueTeam);
 			
 			Map<String, Object> resultMatching = joinService.matchingname(param);
 			valueMatching = resultMatching.get("USER_NAME");
-		
-//			if(valueMatching == null) {
-//				valueMatching = "매칭해주세요";
-//			}
+			}
+			else {
+				valueAuthor =3;
+	        	valueMatching = "매칭해주세요";
+			}
 			
 	        responseData.put("USER_NAME", valueName);
 	        responseData.put("AUTHOR", valueAuthor);
 	        responseData.put("matchingname", valueMatching);
-
-	    
-	        	
+	        responseData.put("TEAM", valueTeam);
+			
+			
+			
 	        return ResponseEntity.ok(responseData);
 		    // NullPointerException이 발생할 수 있는 코드
 		    // 예를 들어, 어떤 객체의 메서드나 속성을 호출하는 경우

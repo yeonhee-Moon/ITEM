@@ -18,11 +18,18 @@ public class ConfirmController {
 	 @Autowired
 	    private ConfirmService confirmService;
 
-	 	@PostMapping("/confirm")
-	    public void uploadConfirm(@RequestParam("image") MultipartFile image,
+	 	@PostMapping("/confirm/insert")
+	    public void insertConfirm(@RequestParam("image") MultipartFile image,
 	                            @RequestParam("text") String descript,
 	                            @RequestParam("id") Long id) {
-	 		confirmService.saveConfirm(id, image, descript);
+	 		confirmService.insertConfirm(id, image, descript);
+	    }
+	 	
+	 	@PostMapping("/confirm/update")
+	    public void updateConfirm(@RequestParam("image") MultipartFile image,
+	                            @RequestParam("text") String descript,
+	                            @RequestParam("id") Long id) {
+	 		confirmService.updateConfirm(id, image, descript);
 	    }
 	 
 	    @GetMapping("/confirmlist/{id}")

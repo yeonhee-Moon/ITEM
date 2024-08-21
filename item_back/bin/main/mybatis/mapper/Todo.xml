@@ -5,15 +5,16 @@
 
 <mapper namespace="com.example.item.todo.mapper.TodoMapper">
 
-    <select id="getAllTodos" resultType="com.example.item.todo.model.Todo">
+    <select id="getAllTodos" parameterType="Long" resultType="com.example.item.todo.model.Todo">
         SELECT * FROM todolist
+        WHERE TEAM = #{storedTeam}
     </select>
 
     <insert id="insertTodo" parameterType="com.example.item.todo.model.Todo">
 		<selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
-        INSERT INTO todolist (TITLE, COMPLETED, CONFIRMED, LINED) VALUES (#{title}, #{completed}, #{confirmed}, #{lined})
+        INSERT INTO todolist (TITLE, COMPLETED, CONFIRMED, LINED, TEAM) VALUES (#{title}, #{completed}, #{confirmed}, #{lined}, #{team})
     </insert>
 
     <update id="updateTodo" parameterType="com.example.item.todo.model.Todo">

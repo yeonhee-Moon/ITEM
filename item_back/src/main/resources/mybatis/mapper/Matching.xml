@@ -16,6 +16,12 @@
 		SET AUTHOR = "1"
         WHERE USER_ID = #{tuteeid}
     </update>
+    
+
+    <select id="selectMaxTeam" resultType="int">
+        SELECT MAX(TEAM) FROM user
+    </select>
+
 	
 	<update id="matching" parameterType="map">
         UPDATE user
@@ -23,5 +29,14 @@
         WHERE USER_ID IN (#{tutorid}, #{tuteeid})
     </update>
     
-	
+	<select id="showTutor" parameterType="java.util.Map" resultType="java.util.Map">
+         SELECT * FROM user
+         WHERE USER_ID = #{tutorid}
+    </select>
+    
+    <select id="showTutee" parameterType="java.util.Map" resultType="java.util.Map">
+         SELECT * FROM user
+         WHERE USER_ID = #{tuteeid}
+    </select>
+    
 </mapper>

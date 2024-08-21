@@ -48,6 +48,7 @@ function Login() {
       //setMatchingname(response.data.matchingname);
       localStorage.setItem('username', response.data.USER_NAME);
       localStorage.setItem('matchingname', response.data.matchingname);
+      localStorage.setItem('team',  response.data.TEAM);
       //console.log('서버 응답:', {username});
       //console.log('서버 응답:', {matchingname});
       //console.log('서버 응답:', {isAuthorOne});

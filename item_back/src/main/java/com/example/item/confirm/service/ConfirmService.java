@@ -15,15 +15,26 @@ public class ConfirmService {
 	@Autowired
     private ConfirmMapper confirmMapper;
 
-	public void saveConfirm(Long id, MultipartFile image, String descript) {
+	public void insertConfirm(Long id, MultipartFile image, String descript) {
         try {
             byte[] imageData = image.getBytes();
             Confirm confirm = new Confirm(id, imageData, descript);
-            confirmMapper.saveConfirm(confirm);
+            confirmMapper.insertConfirm(confirm);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+	
+	public void updateConfirm(Long id, MultipartFile image, String descript) {
+        try {
+            byte[] imageData = image.getBytes();
+            Confirm confirm = new Confirm(id, imageData, descript);
+            confirmMapper.updateConfirm(confirm);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
 	
 	public Confirm getImageInfoById(Long id) {
         return confirmMapper.getImageInfoById(id);

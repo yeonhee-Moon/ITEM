@@ -19,28 +19,31 @@ public class MatchingController {
 	@Autowired
 	MatchingService matchingService;
 	
-	int a = 0;
 	
 	@PostMapping("/matching")
-	public ResponseEntity<Object> itemMatching(String tutorid, String tuteeid) {
+	public ResponseEntity<Map<String, Object>> itemMatching(String tutorid, String tuteeid, String userid) {
 
 		Map<String, Object> paramTutor = new HashMap<>();
 		Map<String, Object> paramTutee = new HashMap<>();
 		Map<String, Object> paramMatching = new HashMap<>();
+		Map<String, Object> param = new HashMap<>();
 		
 		
 		System.out.println("tutorid: "+ tutorid);
 		System.out.println("tuteeid: "+ tuteeid);
+		System.out.println("userid: "+ userid);
 
 		paramTutor.put("tutorid", tutorid);
 		paramTutee.put("tuteeid", tuteeid);
 		paramMatching.put("tutorid", tutorid);
 		paramMatching.put("tuteeid", tuteeid);
 		
-		a = a+1;
-		System.out.println("team: "+ a);
+		int getMaxTeam = matchingService.getMaxTeam();
 		
-		paramMatching.put("team", a);
+		getMaxTeam= getMaxTeam+1;
+		System.out.println("team: "+ getMaxTeam);
+		
+		paramMatching.put("team", getMaxTeam);
 		
 		matchingService.authorTutee(paramTutee);
 		matchingService.authorTutor(paramTutor);
@@ -50,11 +53,47 @@ public class MatchingController {
 		
 		matchingService.matching(paramMatching);
 		
-	    if(resultTutee==1 && resultTutor==1) {
-	    	return ResponseEntity.ok(null);
-	    } else {
-	    	return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);	
-	    }
+		param.put("tutorid", tutorid);
+		param.put("tuteeid", tuteeid);
+
+		Map<String, Object> Tutorbox = matchingService.showTutor(param);
+		Map<String, Object> Tuteebox = matchingService.showTutee(param);
+		Object valueMatchingTutor = Tutorbox.get("USER_NAME");
+		Object valueMatchingTutee = Tuteebox.get("USER_NAME");
+		Object valueAuthorTutor = Tutorbox.get("AUTHOR");
+		Object valueAuthorTutee = Tuteebox.get("AUTHOR");
+		
+		Map<String, Object> showTutor = new HashMap<>();
+		Map<String, Object> showTutee = new HashMap<>();
+		
+		showTutee.put("matchingname", valueMatchingTutor);
+		showTutee.put("AUTHOR", valueAuthorTutee);
+		showTutee.put("TEAM", getMaxTeam);
+		showTutor.put("matchingname", valueMatchingTutee);
+		showTutor.put("AUTHOR", valueAuthorTutor);
+		showTutor.put("TEAM", getMaxTeam);
+		
+//		System.out.println("userid.equals(tuteeid) : " + userid.equals(tuteeid));
+//		System.out.println("resultTutee==1  : " + (resultTutee == 1) );
+//		System.out.println("resultTutor==1 : " + (resultTutor==1));
+//		
+		
+		
+		if ( (userid.equals(tutorid)) && (resultTutee==1 && resultTutor==1)) {
+			return ResponseEntity.ok(showTutor);
+//		} else if ( (userid == tuteeid) && (resultTutee==1 && resultTutor==1)) {
+		} else if ( (userid.equals(tuteeid)) && (resultTutee==1 && resultTutor==1)) {
+			return ResponseEntity.ok(showTutee);
+		} else {
+//			System.out.println("userid :" + userid + ", tutorid : " + tutorid + ", tuteeid : " + tuteeid+ ", resultTutee : " + resultTutee + ", resultTutor : " + resultTutor);
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);	
+		}
+		
+//	    if(resultTutee==1 && resultTutor==1) {
+//	    	return ResponseEntity.ok(null);
+//	    } else {
+//	    	return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);	
+//	    }
 
 	}
 }

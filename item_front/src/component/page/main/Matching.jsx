@@ -8,6 +8,8 @@ function Matching() {
       tuteeid: '',
     });
   
+    const storedUserid = localStorage.getItem('userid');
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -17,6 +19,7 @@ function Matching() {
       const formDataObject = new FormData();
       formDataObject.append('tutorid', formData.tutorid);
       formDataObject.append('tuteeid', formData.tuteeid);
+      formDataObject.append('userid', storedUserid);
       
       // Axios로 POST 요청 보내기
       try {
@@ -26,6 +29,23 @@ function Matching() {
           },
         });
         console.log('서버 응답:', response.data);
+        localStorage.setItem('matchingname', response.data.matchingname);
+        localStorage.setItem('team',  response.data.TEAM);
+        
+        if (response.data.AUTHOR === '1') {
+          localStorage.setItem('isAuthorOne', 'true');
+          localStorage.setItem('isAuthorTwo', 'false');
+          //setIsAuthorOne(true);
+        } else if (response.data.AUTHOR === '2'){
+          localStorage.setItem('isAuthorTwo', 'true');
+          localStorage.setItem('isAuthorOne', 'false');
+          //setIsAuthorTwo(true);
+        } else {
+          localStorage.setItem('isAuthorOne', 'false');
+          localStorage.setItem('isAuthorTwo', 'false');
+          //setIsAuthorOne(false);
+          //setIsAuthorTwo(false);
+        }
       } catch (error) {
         console.error('오류 발생:', error);
       }

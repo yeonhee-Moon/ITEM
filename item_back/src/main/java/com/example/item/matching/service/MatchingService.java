@@ -23,9 +23,23 @@ public class MatchingService {
 		return authorTutor;
 	}
 	
+	 public int getMaxTeam() {
+	        return matchingMapper.selectMaxTeam();
+	    }
+	
 	public int matching(Map<String, Object> paramMatching) {
 		int matching= matchingMapper.matching(paramMatching);
 		return matching;
+	}
+	
+	public Map<String, Object> showTutor(Map<String, Object> param) {
+		Map<String, Object> Tutorbox = matchingMapper.showTutor(param);
+		return Tutorbox;
+	}
+	
+	public Map<String, Object> showTutee(Map<String, Object> param) {
+		Map<String, Object> Tuteebox = matchingMapper.showTutee(param);
+		return Tuteebox;
 	}
 
 }

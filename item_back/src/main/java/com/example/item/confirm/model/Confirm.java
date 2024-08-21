@@ -2,15 +2,19 @@ package com.example.item.confirm.model;
 
 public class Confirm {
 	private Long id;
-	private byte[] image;
+	private byte[] imageData;
     private String descript;
     
-	public Confirm(Long id2, byte[] imageData, String descript2) {
-		// TODO Auto-generated constructor stub
-	}
+//	public Confirm(Long id2, byte[] imageData, String descript2) {
+//		// TODO Auto-generated constructor stub
+//	}
 
-	public byte[] getImage() {
-		return image;
+	public Confirm() {}
+
+	public Confirm(Long id, byte[] imageData, String descript) {
+		this.id = id;
+	    this.imageData = imageData;
+	    this.descript = descript;
 	}
 	
 	public Long getId() {
@@ -19,14 +23,20 @@ public class Confirm {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
+	
 	public String getDescript() {
 		return descript;
 	}
 	public void setDescript(String descript) {
 		this.descript = descript;
+	}
+
+	public byte[] getImageData() {
+		return imageData;
+	}
+
+	public void setImageData(byte[] imageData) {
+		this.imageData = imageData;
 	}
 
 }
