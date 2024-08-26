@@ -16,7 +16,7 @@
         WHERE ID = #{id}
     </update>
 
-    <select id="getImageInfoById" parameterType="Long" resultType="com.example.item.confirm.model.Confirm">
+    <select id="getImageInfoById" parameterType="Long" resultType="com.example.item.confirm.model.ImageInfo">
         SELECT IMAGE, DESCRIPT
         FROM confirmlist
         WHERE ID = #{id}

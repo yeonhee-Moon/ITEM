@@ -3,6 +3,7 @@ package com.example.item.confirm.mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.item.confirm.model.Confirm;
+import com.example.item.confirm.model.ImageInfo;
 
 @Mapper
 public interface ConfirmMapper {
@@ -11,5 +12,5 @@ public interface ConfirmMapper {
 	
 	void updateConfirm(Confirm confirm);
 	
-	Confirm getImageInfoById(Long id);
+	ImageInfo getImageInfoById(Long id);
 }

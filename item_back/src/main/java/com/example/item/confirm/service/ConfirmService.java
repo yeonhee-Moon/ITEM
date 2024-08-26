@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.item.confirm.mapper.ConfirmMapper;
 import com.example.item.confirm.model.Confirm;
+import com.example.item.confirm.model.ImageInfo;
 
 @Service
 public class ConfirmService {
@@ -36,7 +37,7 @@ public class ConfirmService {
     }
 	
 	
-	public Confirm getImageInfoById(Long id) {
+	public ImageInfo getImageInfoById(Long id) {
         return confirmMapper.getImageInfoById(id);
     }
 }

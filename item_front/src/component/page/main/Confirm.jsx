@@ -46,7 +46,7 @@ function Confirm() {
       console.error('오류 발생:', error);
     }
 
-    setIsButtonClicked(true);
+    setIsButtonClicked(!isButtonClicked);
   };
 
   
@@ -64,7 +64,7 @@ function Confirm() {
       console.error('오류 발생:', error);
     }
 
-    setIsButtonClicked(true);
+    setIsButtonClicked(!isButtonClicked);
   };
 
   // const handleChange = (e) => {

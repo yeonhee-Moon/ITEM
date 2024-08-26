@@ -3,10 +3,14 @@ import React, { useState, useEffect  } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 
+
 function ConfirmList (props){
   const {condition}= props;
   // const [image, setImage] = useState(null);
-  const [imageInfo, setImageInfo] = useState(null);
+  const [imageInfo, setImageInfo] = useState({
+    text: '',
+    imageSrc: '',
+  });
   const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
   const id = searchParams.get('paramName');
@@ -14,10 +18,26 @@ function ConfirmList (props){
   useEffect(() => {
     const fetchImageInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/item/confirmlist/${id}`);
-        setImageInfo(response.data);
+        const response = await axios.get(`http://localhost:3000/item/confirmlist/${id}`, {
+          responseType: 'json',
+      
+        });
+        // setImageInfo(response.data);
+        // setLoading(false);
+
+   
+        const imageUrl = `data:image/jpg;base64,${response.data.image}`; 
+        // 이미지 데이터를 Base64로 인코딩
+        // const base64Image = Buffer.from(response.data.imageData, 'binary').toString('base64');
+        // const imageUrl = `data:image/jpeg;base64,${base64Image}`; // 이미지 타입에 맞게 설정
+
+        setImageInfo({
+          text: response.data.descript,
+          imageSrc: imageUrl,
+        });
         setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error('Error fetching image info:', error);
       }
     };
@@ -25,8 +45,9 @@ function ConfirmList (props){
     fetchImageInfo();
   }, [condition]);
 
+  
   if (loading) return <div>Loading...</div>;
-  if (!imageInfo) return <div>No data found</div>;
+  // if (!imageInfo.text) return <div>No data found</div>;
 
   // const handleImageFetch = () => {
   //   axios.get(`http://localhost:3000/item/comfirmlist/${id}`, { responseType: 'blob' })
@@ -66,22 +87,17 @@ function ConfirmList (props){
   
       <div>
       <h1>ConfirmList</h1>  
-
-      <div>
-      <img src={`data:image/jpeg;base64,${imageInfo.imageData}`} alt="Image" />
-      <p>{imageInfo.descript}</p>
+ 
+      {imageInfo.text ? (
+       <div>
+       <img src={imageInfo.imageSrc} alt="Image" />
+       <p>{imageInfo.text}</p>
+       </div>
+      ) : (
+        <div>No data found</div>
+      )}
       </div>
-
-      {/* <div>
-      <button onClick={handleImageFetch}>Fetch Image</button>
-      {image && <img src={image} alt="Fetched Image" />}
-      </div> */}
-
-      {/* <div>
-      //////<input type="file" onChange={handleImageChange} />
-      <button onClick={handleUpload}>Upload Image</button>
-      </div> */}
-      </div>
+        
     )
   };
   
