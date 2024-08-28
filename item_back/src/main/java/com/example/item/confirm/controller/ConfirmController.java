@@ -1,5 +1,7 @@
 package com.example.item.confirm.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,28 +22,48 @@ public class ConfirmController {
 	 @Autowired
 	    private ConfirmService confirmService;
 
-	 	@PostMapping("/confirm/insert")
-	    public void insertConfirm(@RequestParam("image") MultipartFile image,
-	                            @RequestParam("text") String descript,
-	                            @RequestParam("id") Long id) {
-	 		confirmService.insertConfirm(id, image, descript);
-	    }
+	 	@PostMapping("/confirm/insert") 	
+	 	  public void insertConfirm(@RequestParam(value = "image", required = false) MultipartFile image,
+	 			  					@RequestParam("text") String descript,
+	 			  					@RequestParam("id") Long id) throws IOException {
+										confirmService.insertConfirm(id, image, descript);
+								}
+	 	
+	 	
+//	    public void insertConfirm(@RequestParam("image") MultipartFile image,
+//        @RequestParam("text") String descript,
+//        @RequestParam("id") Long id) {
+//confirmService.insertConfirm(id, image, descript);
+//}
 	 	
 	 	@PostMapping("/confirm/update")
-	    public void updateConfirm(@RequestParam("image") MultipartFile image,
+	    public void updateConfirm(@RequestParam(value = "image", required = false) MultipartFile image,
 	                            @RequestParam("text") String descript,
-	                            @RequestParam("id") Long id) {
-	 		confirmService.updateConfirm(id, image, descript);
-	    }
-	 
+	                            @RequestParam("id") Long id)   throws IOException {
+	                            	confirmService.updateConfirm(id, image, descript); // 서비스 호출
+	                                
+	                            }
+
+	 	
 	    @GetMapping("/confirmlist/{id}")
 	    public ResponseEntity<ImageInfoDTO> getImageInfoById(@PathVariable Long id) {
 	        	ImageInfo imageInfo = confirmService.getImageInfoById(id);
-	        	ImageInfoDTO imageInfoDTO = new ImageInfoDTO(
-	            imageInfo.getDescript(), // 텍스트 데이터
-	            imageInfo.getImage() // 이미지 바이너리 데이터
-	        );
+	        	
+	        	  if (imageInfo == null) {
+	                  return ResponseEntity.notFound().build(); // 데이터가 없을 때 404 응답
+	              }
 
-	        return ResponseEntity.ok(imageInfoDTO);
+	              ImageInfoDTO imageInfoDTO = new ImageInfoDTO(
+	                  imageInfo.getDescript(),
+	                  imageInfo.getImage() != null ? imageInfo.getImage() : null // 이미지 데이터가 없을 때 null로 처리
+	              );
+	              
+	              return ResponseEntity.ok(imageInfoDTO);
+//	        	ImageInfoDTO imageInfoDTO = new ImageInfoDTO(
+//	            imageInfo.getDescript(), // 텍스트 데이터
+//	            imageInfo.getImage() // 이미지 바이너리 데이터
+//	        );
+//
+//	        return ResponseEntity.ok(imageInfoDTO);
 	    }
 }

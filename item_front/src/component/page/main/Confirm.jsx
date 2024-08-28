@@ -19,7 +19,10 @@ function Confirm() {
   const formDataObject = new FormData();
   formDataObject.append('id', `${id}`);
   formDataObject.append('text', description);
-  formDataObject.append('image', image);
+  if (image) {
+    formDataObject.append('image', image); // 이미지가 있을 때만 추가
+  }
+  // formDataObject.append('image', image);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -9,7 +9,7 @@ function ConfirmList (props){
   // const [image, setImage] = useState(null);
   const [imageInfo, setImageInfo] = useState({
     text: '',
-    imageSrc: '',
+    imageSrc: null,
   });
   const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
@@ -24,8 +24,7 @@ function ConfirmList (props){
         });
         // setImageInfo(response.data);
         // setLoading(false);
-
-   
+          
         const imageUrl = `data:image/jpg;base64,${response.data.image}`; 
         // 이미지 데이터를 Base64로 인코딩
         // const base64Image = Buffer.from(response.data.imageData, 'binary').toString('base64');
@@ -35,6 +34,7 @@ function ConfirmList (props){
           text: response.data.descript,
           imageSrc: imageUrl,
         });
+
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -43,6 +43,9 @@ function ConfirmList (props){
     };
 
     fetchImageInfo();
+
+    // console.log(imageInfo.imageSrc);
+    
   }, [condition]);
 
   
@@ -88,14 +91,25 @@ function ConfirmList (props){
       <div>
       <h1>ConfirmList</h1>  
  
-      {imageInfo.text ? (
+      <h3>Description: {imageInfo.text}</h3>
+      {(imageInfo.imageSrc !== 'data:image/jpg;base64,null') && (imageInfo.imageSrc !== null) ? (
+        <img
+          src={imageInfo.imageSrc}
+          alt="Uploaded"
+          style={{ width: '300px', height: 'auto' }}
+        />
+      ) : (
+        <p>No image available</p> // 이미지가 없을 때 표시할 내용
+      )}
+
+      {/* {imageInfo.text || imageInfo.imageSrc ? (
        <div>
        <img src={imageInfo.imageSrc} alt="Image" />
        <p>{imageInfo.text}</p>
        </div>
       ) : (
         <div>No data found</div>
-      )}
+      )} */}
       </div>
         
     )

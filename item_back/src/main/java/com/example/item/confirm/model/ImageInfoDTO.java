@@ -13,7 +13,8 @@ public class ImageInfoDTO {
     // 모든 필드를 초기화하는 생성자
     public ImageInfoDTO(String descript, byte[] image) {
         this.descript = descript;
-        this.image = Base64.getEncoder().encodeToString(image); // 이미지 데이터를 Base64로 인코딩
+        this.image = (image != null) ? Base64.getEncoder().encodeToString(image) : null;
+//        this.image = Base64.getEncoder().encodeToString(image); // 이미지 데이터를 Base64로 인코딩
     }
 
     // Getters and Setters
@@ -29,9 +30,15 @@ public class ImageInfoDTO {
         return image;
     }
 
-    public void setImage(byte[] image) {
-        this.image = Base64.getEncoder().encodeToString(image); // Setter에서도 Base64로 인코딩
+    public void setImageData(byte[] image) {
+        this.image = (image != null) ? Base64.getEncoder().encodeToString(image) : null;
     }
+    
+//    public void setImage(byte[] image) {
+//        this.image = Base64.getEncoder().encodeToString(image); // Setter에서도 Base64로 인코딩
+//    }
+    
+    
 //	private String descript;
 //    private byte[] image;
 //
