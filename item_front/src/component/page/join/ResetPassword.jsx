@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import Button from "../ui/Button";
+
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +12,8 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [resetSuccess, setResetSuccess] = useState(false);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
@@ -50,6 +55,7 @@ const ResetPassword = () => {
   };
 
   return (
+    <div>
     <form onSubmit={handleResetPassword}>
     <div>
       <h2>비밀번호 재설정</h2>
@@ -70,6 +76,11 @@ const ResetPassword = () => {
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
     </form>
+     <Button title="HOME"
+     onClick={() => {
+       navigate("/main");
+     }}/>
+     </div>
   );
 };
 

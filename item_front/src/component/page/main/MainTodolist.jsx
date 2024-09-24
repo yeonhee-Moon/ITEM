@@ -5,6 +5,7 @@ import axios from 'axios';
 import PlusButton from "../ui/PlusButton";
 import Button from "../ui/Button"
 import Todolist from "./Todolist"
+// import { useLocation } from 'react-router-dom';
 //import { useContext } from "react";
 
 
@@ -16,7 +17,10 @@ const Title = styled.h1`
 function MainTodolist(props) {
   
   const navigate = useNavigate();
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const location = useLocation();
+  // const { value } = location.state || { value: false }; // 값이 없을 때를 대비해 기본값 설정
+  // setIsLoggedIn(value);
   const storedTeam = localStorage.getItem('team');
   const username = localStorage.getItem('username');
   const matchingname = localStorage.getItem('matchingname');
@@ -29,6 +33,31 @@ function MainTodolist(props) {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   const [updateId, setUpdateId] = useState(null);
+
+  useEffect(() => {
+    const authToken = localStorage.getItem('isLoggedIn');
+    setIsLoggedIn(!!authToken); // authToken이 있으면 true, 없으면 false
+  }, []);
+
+  useEffect(() => {
+
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+    const expirationTime = localStorage.getItem('expirationTime');
+
+    if (storedIsLoggedIn === 'true' && expirationTime) {
+      const currentTime = new Date().getTime();
+
+      if (currentTime > parseInt(expirationTime)) {
+        // 세션이 만료되었을 때 로그아웃
+        handleLogout();
+      } 
+      // else {
+      //   setIsLoggedIn(true);
+      // //   //setIsAuthorOne(true);
+      // //   //setIsAuthorTwo(true);
+      // }
+    }
+  }, []);
 
   useEffect(() => {
     axios.get(`http://localhost:3000/item/gettodo/${storedTeam}`)
@@ -102,38 +131,53 @@ function MainTodolist(props) {
       .then(() => setTodos(todos.filter((todo) => todo.id !== id)))
       .catch((error) => console.error('Error deleting todo:', error));
   };
-  // // 버튼 정보를 저장할 상태 설정
-  // const [buttons, setButtons] = useState([]);
 
-  // // 버튼 클릭 시 동작 함수
-  // const handleButtonClick = () => {
-  //   // 새로운 버튼 정보 생성
-    
-  //   const newButton = {
-  //     id: buttons.length + 1, // 간단한 id 부여 (id는 고유해야 함)
-  //   };
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('expirationTime');
+    localStorage.removeItem('isAuthorOne');
+    localStorage.removeItem('isAuthorTwo');
+    localStorage.removeItem('username');
+    localStorage.removeItem('matchingname');
+    localStorage.removeItem('userid');
+    localStorage.removeItem('team');
+  
+    setIsLoggedIn(false);
 
-  //   // 새로운 버튼 정보를 기존 버튼 배열에 추가
-  //   setButtons([...buttons, newButton]);
-  // };
+    // 페이지 새로고침
+    // navigate('/login'); // 로그인 페이지로 이동
+    // window.location.reload(); // 강제로 페이지 새로고침하여 캐시 무효화
+   
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
 
 
 
   return (
   <div>
     <Title>메인</Title>
+    <button onClick={isLoggedIn ? handleLogout : handleLogin}>
+    {isLoggedIn ? "로그아웃" : "로그인"}
+    </button>
     <Button title="팀매칭"
       onClick={() => {
       navigate("/matching");
       }}
     />
-    <div>
+     {isLoggedIn === false ? (null
+     ) : (
+    <div> 
     {((isAuthorOne ==='false') && (isAuthorTwo ==='false')) ? null : (<p>{username}  {isAuthorOne==='true'? '튜티' : '튜터'}</p>)}
     {matchingname !=='매칭해주세요'? (<p>{matchingname}  {isAuthorOne==='true'? '튜터' : '튜티'}</p>) : <p>{username} 님 매칭해주세요</p>}
     </div>
+     )}
     
-  {storedTeam === '0'? ( null
-  ) : (
+    {storedTeam === '0' || isLoggedIn === false ? ( null
+     ) : (
     <div>
       <h1>Todo List</h1>
       <input

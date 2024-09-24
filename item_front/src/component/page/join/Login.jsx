@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import Button from "../ui/Button";
+// import Button from "../ui/Button";
 
 
 //const UsernameContext = React.createContext();
@@ -13,7 +13,7 @@ function Login() {
     userid: '',
     password: ''
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
  // const [username, setUsername] = useState('');
  // const [isAuthorOne, setIsAuthorOne] = useState(false);
  // const [isAuthorTwo, setIsAuthorTwo] = useState(false);
@@ -54,14 +54,16 @@ function Login() {
       //console.log('서버 응답:', {isAuthorOne});
       if (response.data.except === 1) {
         // 로그인 실패
-        setIsLoggedIn(false);
+        // setIsLoggedIn(false);
         alert('로그인 실패. 사용자 이름과 비밀번호를 확인하세요.');
         } else {
         // 로그인 성공
         const expirationTime = new Date().getTime() + 60 * 60 * 1000; // 1시간 후 만료
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('expirationTime', expirationTime);
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
+        // navigate('/main', { state: { value: true } });
+        navigate('/main');
       }
 
       if (response.data.AUTHOR === '1') {
@@ -83,40 +85,40 @@ function Login() {
     }
   };
 
-  const storedUserid = localStorage.getItem('userid');
+  // const storedUserid = localStorage.getItem('userid');
   
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('expirationTime');
-    localStorage.removeItem('isAuthorOne');
-    localStorage.removeItem('isAuthorTwo');
-    localStorage.removeItem('username');
-    localStorage.removeItem('matchingname');
-    localStorage.removeItem('userid');
+  // const handleLogout = () => {
+  //   localStorage.removeItem('isLoggedIn');
+  //   localStorage.removeItem('expirationTime');
+  //   localStorage.removeItem('isAuthorOne');
+  //   localStorage.removeItem('isAuthorTwo');
+  //   localStorage.removeItem('username');
+  //   localStorage.removeItem('matchingname');
+  //   localStorage.removeItem('userid');
     
     
-    setIsLoggedIn(false);
-    //setIsAuthorOne(false);
-    //setIsAuthorTwo(false);
-  };
+  //   setIsLoggedIn(false);
+   
+  // };
 
-  useEffect(() => {
-    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
-    const expirationTime = localStorage.getItem('expirationTime');
+  // useEffect(() => {
+  //   const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+  //   const expirationTime = localStorage.getItem('expirationTime');
 
-    if (storedIsLoggedIn === 'true' && expirationTime) {
-      const currentTime = new Date().getTime();
+  //   if (storedIsLoggedIn === 'true' && expirationTime) {
+  //     const currentTime = new Date().getTime();
 
-      if (currentTime > parseInt(expirationTime)) {
-        // 세션이 만료되었을 때 로그아웃
-        handleLogout();
-      } else {
-        setIsLoggedIn(true);
-        //setIsAuthorOne(true);
-        //setIsAuthorTwo(true);
-      }
-    }
-  }, []);
+  //     if (currentTime > parseInt(expirationTime)) {
+  //       // 세션이 만료되었을 때 로그아웃
+  //       handleLogout();
+  //     } 
+  //     // else {
+  //     //   setIsLoggedIn(true);
+  //     //   //setIsAuthorOne(true);
+  //     //   //setIsAuthorTwo(true);
+  //     // }
+  //   }
+  // }, []);
 
   const navigate = useNavigate();
       //<UsernameContext.Provider value={username}/>
@@ -124,7 +126,7 @@ function Login() {
       //<IsAuthorOneContext.Provider value={isAuthorOne}/>
   return (
     <div>
-      {isLoggedIn ? (
+      {/* {isLoggedIn ? (
         <div>
           <h1>로그인 성공!</h1>
           <p>환영합니다, {storedUserid}님.</p>
@@ -134,7 +136,7 @@ function Login() {
         }}/>
           <button onClick={handleLogout}>로그아웃</button>
         </div>
-      ) : (
+      ) : ( */}
         <form onSubmit={handleLogin}>
         <div>
           <h1>로그인</h1>
@@ -159,7 +161,6 @@ function Login() {
           <button type="submit">로그인</button>
         </div>
         </form>
-      )}
     </div>
   );
 }

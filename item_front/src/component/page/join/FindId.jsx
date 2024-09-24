@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState  }from 'react';
 import axios from 'axios';
-
+import { useNavigate } from "react-router-dom";
+import Button from "../ui/Button";
 
 const FindId = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ const FindId = () => {
     email: ''
   });
   const [userid, setUserid] = useState('');
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -39,6 +42,7 @@ const FindId = () => {
   };
 
   return (
+    <div>
     <form onSubmit={handleFindUserid}>
     <div>
       <h2>아이디 찾기</h2>
@@ -62,6 +66,11 @@ const FindId = () => {
       {userid && <p>찾은 아이디: {userid}</p>}
     </div>
     </form>
+    <Button title="HOME"
+      onClick={() => {
+        navigate("/main");
+      }}/>
+    </div>
   );
 };
 
