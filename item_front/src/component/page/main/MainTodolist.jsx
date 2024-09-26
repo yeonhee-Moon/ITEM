@@ -14,6 +14,57 @@ const Title = styled.h1`
   color: green;
   `;
 
+const Container = styled.div`
+  display: flex;
+  flex: 1
+`;
+
+const MainContent = styled.div`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const SideContent = styled.div`
+`;
+
+const InputArea = styled.div`
+  flex-basis: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const TodoInput = styled.input`
+  font-size: 1rem;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px #ff76c5 solid;
+  color: #ff76c5;
+  flex-basis: 500px;
+  transition: all 0.5s ease-in-out; /* 애니메이션 추가 */
+
+  &::placeholder {
+      color: #ff76c5;
+  }
+
+  &:focus-visible {
+      outline-color: greenyellow;
+      color: greenyellow;
+      transform: translateY(2px); /* 버튼을 아래로 살짝 이동 */
+
+      &::placeholder {
+          color: greenyellow;
+      }
+  }
+`;
+
+const MenuTitle = styled.p`
+  font-size: 1.8rem;
+  font-weight: bold;
+`;
+
 function MainTodolist(props) {
   
   const navigate = useNavigate();
@@ -50,6 +101,7 @@ function MainTodolist(props) {
       if (currentTime > parseInt(expirationTime)) {
         // 세션이 만료되었을 때 로그아웃
         handleLogout();
+        // navigate("/login");
       } 
       // else {
       //   setIsLoggedIn(true);
@@ -132,6 +184,12 @@ function MainTodolist(props) {
       .catch((error) => console.error('Error deleting todo:', error));
   };
 
+  const handleKeyUp = (event) => {
+    if (event.key === 'Enter') {
+      handleAddTodo();
+    }
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('expirationTime');
@@ -158,16 +216,20 @@ function MainTodolist(props) {
 
 
   return (
-  <div>
+  <Container>
+    <SideContent>
     <Title>메인</Title>
+
     <button onClick={isLoggedIn ? handleLogout : handleLogin}>
     {isLoggedIn ? "로그아웃" : "로그인"}
     </button>
+
     <Button title="팀매칭"
       onClick={() => {
       navigate("/matching");
       }}
     />
+
      {isLoggedIn === false ? (null
      ) : (
     <div> 
@@ -175,17 +237,29 @@ function MainTodolist(props) {
     {matchingname !=='매칭해주세요'? (<p>{matchingname}  {isAuthorOne==='true'? '튜터' : '튜티'}</p>) : <p>{username} 님 매칭해주세요</p>}
     </div>
      )}
+     </SideContent>
     
+     <MainContent>
+
     {storedTeam === '0' || isLoggedIn === false ? ( null
      ) : (
     <div>
-      <h1>Todo List</h1>
-      <input
-        type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
+      <MenuTitle>Todo List</MenuTitle>
+
+      <InputArea>
+      <TodoInput
+            type="text"
+            value={newTodo}
+            placeholder="Add Note"
+            onChange={(e) => {
+              console.log('e', e);
+              setNewTodo(e.target.value);
+            }}
+            onKeyUp={handleKeyUp}
       />
       <PlusButton onClick={handleAddTodo}></PlusButton>
+      </InputArea>
+
       <Todolist 
       todos={todos} 
       updateTodo={handleUpdateTodo}
@@ -198,7 +272,8 @@ function MainTodolist(props) {
       updateId={updateId}/>
     </div>
   )}
-  </div>
+    </MainContent>
+  </Container>
   );
 }
 

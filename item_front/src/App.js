@@ -10,7 +10,7 @@ import MainTodolist from './component/page/main/MainTodolist';
 import Matching from './component/page/main/Matching';
 import Confirm from './component/page/main/Confirm';
 import ConfirmList from './component/page/main/ConfirmList';
-
+import { Layout }  from './Layout';
 
 function App(props) {
   return (
@@ -22,10 +22,16 @@ function App(props) {
       <Route path="join" element ={<Join />}/>
       <Route path="findid" element ={<FindId />}/>
       <Route path="reset" element ={<ResetPassword />}/>
-      <Route path="main" element ={<MainTodolist />}/>
-      <Route path="matching" element ={<Matching />}/>
+      {/* <Route path="main" element ={<MainTodolist />}/>
+      <Route path="matching" element ={<Matching />}/> */}
       <Route path="confirm" element ={<Confirm />}/>
       <Route path="confirmList" element ={<ConfirmList />}/>
+
+      <Route path="/" element={<Layout />}>
+          <Route path="main" element={<MainTodolist />} />
+          <Route path="matching" element={<Matching />} />
+      </Route>
+
     </Routes>
   </BrowserRouter>
   );
