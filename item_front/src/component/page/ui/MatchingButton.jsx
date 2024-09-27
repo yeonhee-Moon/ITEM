@@ -4,11 +4,11 @@ import styled from "styled-components";
 const StyledButton = styled.button`
     border-width: 1px;
     border-radius: 5px;
-    border-color: lightgrey;
-    color: aliceblue;
+    border-color: aliceblue;
+    color: grey;
     width: 120px;
     font-size: 1rem;
-    background-color: lightgrey;
+    background-color: aliceblue;
 `;
 
 function Button(props){

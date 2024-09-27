@@ -2,6 +2,18 @@ import React, {useEffect} from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+const Container = styled.div`
+  display: flex;
+  width: 100vw;
+	height: 100vh;	
+`;
+
+const MainContent = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Title = styled.h1`
   color: green;
@@ -25,9 +37,11 @@ function LogoPage() {
   });
   
   return (
-
+   <Container>
+   <MainContent>
    <Title>아이템</Title>
-
+   </MainContent>
+   </Container>
   );
 }
 

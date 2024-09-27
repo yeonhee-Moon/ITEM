@@ -59,18 +59,24 @@ const ResetPassword = () => {
     <form onSubmit={handleResetPassword}>
     <div>
       <h2>비밀번호 재설정</h2>
+      <div>
       <label>
         아이디:
         <input type="text" name="userid" value={formData.userid} onChange={handleChange} />
       </label>
+      </div>
+      <div>
       <label>
         새 비밀번호:
         <input type="password" name="password" value={formData.password} onChange={handleChange} />
       </label>
+      </div>
+      <div>
       <label>
         확인 비밀번호:
         <input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} />
       </label>
+      </div>
       <button type="submit">비밀번호 재설정</button>
       {resetSuccess && <p>비밀번호가 성공적으로 재설정되었습니다.</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}

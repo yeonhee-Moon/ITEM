@@ -33,16 +33,32 @@ const BlockItems=[
 ];
 
 const LogoBlock = styled.div`
-width: 240px;
-height: 160px;
+// width: 240px;
+// height: 160px;
+height: 100vh;
 scroll-snap-align: start;
 display: flex;
-background-size: cover;
-background-position: center;
+// background-size: cover;
+// background-position: center;
 justify-content: center;
 align-items: center;
-background-image: url(https://showcases.yalco.kr/html-css-scoop/04-12/images/04.jpg);
+// background-image: url(https://showcases.yalco.kr/html-css-scoop/04-12/images/04.jpg);
 `;
+
+const MainContent = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SideContent = styled.div`
+`;
+
+const Title = styled.h1`
+  text-align: center;
+  color: green;
+  `;
 
 function Instructions(props) {
   const navigate = useNavigate();
@@ -58,6 +74,9 @@ function Instructions(props) {
     
     })}
     <LogoBlock>
+    <MainContent>
+    <SideContent>
+    <Title>아이템</Title>
     <Button title="회원가입"
             onClick={() => {
                 navigate("/join");
@@ -76,6 +95,8 @@ function Instructions(props) {
             onClick={() => {
                 navigate("/reset");
   }}/>
+    </SideContent>
+    </MainContent>
     </LogoBlock>
   </Wrapper>
   

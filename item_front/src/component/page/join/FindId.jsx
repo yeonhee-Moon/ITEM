@@ -46,6 +46,7 @@ const FindId = () => {
     <form onSubmit={handleFindUserid}>
     <div>
       <h2>아이디 찾기</h2>
+      <div>
       <label>
         이름:
         <input
@@ -54,6 +55,8 @@ const FindId = () => {
         value={formData.username}
         onChange={handleChange} />
       </label>
+      </div>
+      <div>
       <label>
         이메일:
         <input
@@ -62,6 +65,7 @@ const FindId = () => {
         value={formData.email}
         onChange={handleChange} />
       </label>
+      </div>
       <button type="submit">아이디 찾기</button>
       {userid && <p>찾은 아이디: {userid}</p>}
     </div>

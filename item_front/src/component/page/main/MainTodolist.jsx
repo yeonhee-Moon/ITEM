@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import PlusButton from "../ui/PlusButton";
-import Button from "../ui/Button"
+import MatchingButton from "../ui/MatchingButton"
 import Todolist from "./Todolist"
 // import { useLocation } from 'react-router-dom';
 //import { useContext } from "react";
@@ -63,6 +63,16 @@ const TodoInput = styled.input`
 const MenuTitle = styled.p`
   font-size: 1.8rem;
   font-weight: bold;
+`;
+
+const StyledButton = styled.button`
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: lightgrey;
+    color: aliceblue;
+    width: 80px;
+    font-size: 1rem;
+    background-color: lightgrey;
 `;
 
 function MainTodolist(props) {
@@ -220,11 +230,11 @@ function MainTodolist(props) {
     <SideContent>
     <Title>메인</Title>
 
-    <button onClick={isLoggedIn ? handleLogout : handleLogin}>
+    <StyledButton onClick={isLoggedIn ? handleLogout : handleLogin}>
     {isLoggedIn ? "로그아웃" : "로그인"}
-    </button>
+    </StyledButton>
 
-    <Button title="팀매칭"
+    <MatchingButton title="팀매칭"
       onClick={() => {
       navigate("/matching");
       }}
@@ -237,9 +247,10 @@ function MainTodolist(props) {
     {matchingname !=='매칭해주세요'? (<p>{matchingname}  {isAuthorOne==='true'? '튜터' : '튜티'}</p>) : <p>{username} 님 매칭해주세요</p>}
     </div>
      )}
-     </SideContent>
     
-     <MainContent>
+    </SideContent>
+    
+    <MainContent>
 
     {storedTeam === '0' || isLoggedIn === false ? ( null
      ) : (
