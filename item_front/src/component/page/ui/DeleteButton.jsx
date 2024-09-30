@@ -14,11 +14,32 @@ function DeleteButton(props){
   
   const{onClick}= props;
 
+  const buttonStyle = {
+    padding: '10px',
+    backgroundColor: 'white',
+    color: 'black',
+    cursor: 'pointer',
+  };
 
   return (
-
-  <StyledButton onClick={onClick}>DELETE</StyledButton>
-  
+    <span>
+    <style>
+       {`
+        .material-symbols-outlined {
+          font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 40
+          }
+        `}
+    </style>
+    <button style={buttonStyle} onClick={onClick}>
+    <span class="material-symbols-outlined">
+    close
+    </span>
+    </button>
+   </span>
   );
 
 };

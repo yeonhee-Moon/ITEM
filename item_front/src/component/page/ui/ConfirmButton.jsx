@@ -35,15 +35,30 @@ const handleConfirm = (id) => {
 
 const buttonStyle = {
   padding: '10px',
-  backgroundColor: isButtonClicked ? 'orange' : 'white',
-  color: 'black',
+  backgroundColor: 'white',
+  color: isButtonClicked ? 'orange' : 'black',
   cursor: 'pointer',
 };
 
 return (
-  
-<button style={buttonStyle} onClick = {() => {handleConfirm(todo.id); handleButtonClick(); onClick();}}>CONFIRM
+<span>
+  <style>
+     {`
+      .material-symbols-outlined {
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 40
+        }
+      `}
+  </style>
+<button style={buttonStyle} onClick = {() => {handleConfirm(todo.id); handleButtonClick(); onClick();}}>
+<span class="material-symbols-outlined">
+radio_button_checked
+</span>
 </button>
+</span>
 );
 
 };

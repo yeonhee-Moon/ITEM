@@ -21,8 +21,8 @@ function CompleteButton(props){
 
 const buttonStyle = {
     padding: '10px',
-    backgroundColor: isButtonClicked ? 'red' : 'white',
-    color: 'black',
+    backgroundColor: 'white',
+    color: isButtonClicked ? 'red' : 'black',
     cursor: 'pointer',
   };
 
@@ -31,9 +31,24 @@ const buttonStyle = {
   
   // <button style={buttonStyle} onShowCompleted={showCompleted} onCompleteClick={() => {handleButtonClick(); onComplete();}}>
   // </button>
-  <button style={buttonStyle} onClick={() => {handleButtonClick(); onClick(); }}>V
+  <span>
+  <style>
+     {`
+      .material-symbols-outlined {
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 40
+        }
+      `}
+  </style>
+  <button style={buttonStyle} onClick={() => {handleButtonClick(); onClick(); }}>
+  <span class="material-symbols-outlined">
+  check
+  </span>
   </button>
-
+  </span>
   );
 }
 

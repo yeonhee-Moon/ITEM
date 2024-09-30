@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import PlusButton from "../ui/PlusButton";
 import MatchingButton from "../ui/MatchingButton"
+import Symbol from "./Symbol"
 import Todolist from "./Todolist"
 // import { useLocation } from 'react-router-dom';
 //import { useContext } from "react";
@@ -270,6 +271,8 @@ function MainTodolist(props) {
       />
       <PlusButton onClick={handleAddTodo}></PlusButton>
       </InputArea>
+
+      <Symbol/>
 
       <Todolist 
       todos={todos} 

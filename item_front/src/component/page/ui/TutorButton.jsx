@@ -30,15 +30,30 @@ const handleButtonClick = () => {
 
 const buttonStyle = {
     padding: '10px',
-    backgroundColor: isButtonClicked ? 'blue' : 'white',
-    color: 'black',
+    backgroundColor: 'white',
+    color: isButtonClicked ? 'blue' : 'black',
     cursor: 'pointer',
   };
 
   return (
-  
-  <button style={buttonStyle} onClick={() => {handleButtonClick(); onClick(); }} disabled={!isConditionTrue}>GOOD
+    <span>
+    <style>
+       {`
+        .material-symbols-outlined {
+          font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 40
+          }
+        `}
+    </style>
+  <button style={buttonStyle} onClick={() => {handleButtonClick(); onClick(); }} disabled={!isConditionTrue}>
+  <span class="material-symbols-outlined">
+  check_box_outline_blank
+  </span>
   </button>
+  </span>
 
   );
 }
