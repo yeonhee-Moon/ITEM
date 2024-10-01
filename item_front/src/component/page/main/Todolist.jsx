@@ -17,10 +17,12 @@ function TodoList({ todos, updateTodo, onTodoClick, onComplete, updateId, onConf
           ) : (
             todo.lined ? (<s>{todo.title}</s>) : (<span onClick={() => onTodoClick(todo.id)}>{todo.title}</span>)
           )}
+          <div>
           <CompleteButton completed={todo.completed} onClick={() => onComplete(todo.id, todo.completed)}></CompleteButton>
           <ConfirmButton todo={todo} confirmed={todo.confirmed} onClick={() => onConfirm(todo.id, todo.confirmed)}></ConfirmButton>
           <TutorButton lined={todo.lined} onClick={() => onLined(todo.id, todo.lined)}></TutorButton>
           <DeleteButton onClick={() => onDelete(todo.id)}></DeleteButton>
+          </div>
         </li>
       ))}
     </ul>

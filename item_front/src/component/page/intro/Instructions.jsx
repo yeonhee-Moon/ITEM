@@ -2,10 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../ui/Button";
+import Explain from "./Explain";
 
 
 const Block = styled.div`
-background-image: ${(props) => props.backgroundImage};
+// background-image: ${(props) => props.backgroundImage};
 
 `;
 
@@ -18,19 +19,19 @@ scroll-snap-type: y mandatory;
     height: 100vh;
     scroll-snap-align: start;
     display: flex;
-    min-height: 200px;
-    background-size: cover;
-    background-position: center;
+    // min-height: 200px;
+    // background-size: cover;
+    // background-position: center;
     justify-content: center;
     align-items: center;
   }
 `;
 
-const BlockItems=[
-  {backgroundImage: "url(https://showcases.yalco.kr/html-css-scoop/04-12/images/01.jpg)"},
-  {backgroundImage: "url(https://showcases.yalco.kr/html-css-scoop/04-12/images/02.jpg)"},
-  {backgroundImage: "url(https://showcases.yalco.kr/html-css-scoop/04-12/images/03.jpg)"}
-];
+// const BlockItems=[
+//   {backgroundImage: "url(https://showcases.yalco.kr/html-css-scoop/04-12/images/01.jpg)"},
+//   {backgroundImage: "url(https://showcases.yalco.kr/html-css-scoop/04-12/images/02.jpg)"},
+//   {backgroundImage: "url(https://showcases.yalco.kr/html-css-scoop/04-12/images/03.jpg)"}
+// ];
 
 const LogoBlock = styled.div`
 // width: 240px;
@@ -66,13 +67,16 @@ function Instructions(props) {
   return (
   
   <Wrapper>
-    {BlockItems.map((blockItem)=>{
+    {/* {BlockItems.map((blockItem)=>{
       return(
         <Block backgroundImage={blockItem.backgroundImage}>
         </Block>
         );
     
-    })}
+    })} */}
+    <Block>
+    <Explain/>
+    </Block>
     <LogoBlock>
     <MainContent>
     <SideContent>
