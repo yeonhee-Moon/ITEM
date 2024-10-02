@@ -4,14 +4,18 @@ import ConfirmButton from "../ui/ConfirmButton";
 import TutorButton from "../ui/TutorButton";
 import DeleteButton from "../ui/DeleteButton"
 import UpdateInput from "../ui/UpdateInput"
+import styled from "styled-components";
 
+const StyledLi = styled.li`
+    margin-bottom: 1rem;
+`;
 
 function TodoList({ todos, updateTodo, onTodoClick, onComplete, updateId, onConfirm, onLined, onDelete}) {
 
   return (
     <ul>
       {todos.map((todo) => (
-        <li key={todo.id}>
+        <StyledLi key={todo.id}>
           {updateId === todo.id ? (
             <UpdateInput todo={todo} updateTodo={updateTodo}/>
           ) : (
@@ -23,7 +27,7 @@ function TodoList({ todos, updateTodo, onTodoClick, onComplete, updateId, onConf
           <TutorButton lined={todo.lined} onClick={() => onLined(todo.id, todo.lined)}></TutorButton>
           <DeleteButton onClick={() => onDelete(todo.id)}></DeleteButton>
           </div>
-        </li>
+        </StyledLi>
       ))}
     </ul>
   );

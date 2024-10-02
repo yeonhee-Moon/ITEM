@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+
+
 
 const Container = styled.header`
     background-color: #00bd94;
@@ -32,13 +35,21 @@ const HeaderNavLink = styled(NavLink)`
 `;
 
 export const Header = () => {
+  const location = useLocation();
+  const hideTagPaths = ["/join","/login","/findid","/reset"]; // 숨기고 싶은 경로들
+
+  
+
   return (
     <Container>
       {/*<Logo src="https://via.placeholder.com/150" alt="Logo" />*/}
-      <Nav>
+       {/* 특정 경로에서는 이 태그를 숨기고 싶을 때 */}
+       {!hideTagPaths.includes(location.pathname) && (
+        <Nav>
         <HeaderNavLink to="/main" end>Main</HeaderNavLink>
         <HeaderNavLink to="/matching">Matching</HeaderNavLink>
-      </Nav>
+        </Nav>
+        )}
     </Container>
   );
 

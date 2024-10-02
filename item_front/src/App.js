@@ -18,18 +18,24 @@ function App(props) {
     <Routes>
       <Route index element ={<Loading />}/>
       <Route path="instructions" element ={<Instructions />}/>
-      <Route path="login" element ={<Login />}/>
+      {/* <Route path="login" element ={<Login />}/>
       <Route path="join" element ={<Join />}/>
       <Route path="findid" element ={<FindId />}/>
-      <Route path="reset" element ={<ResetPassword />}/>
+      <Route path="reset" element ={<ResetPassword />}/> */}
       {/* <Route path="main" element ={<MainTodolist />}/>
       <Route path="matching" element ={<Matching />}/> */}
-      <Route path="confirm" element ={<Confirm />}/>
-      <Route path="confirmList" element ={<ConfirmList />}/>
+      {/* <Route path="confirm" element ={<Confirm />}/>
+      <Route path="confirmList" element ={<ConfirmList />}/> */}
 
       <Route path="/" element={<Layout />}>
           <Route path="main" element={<MainTodolist />} />
           <Route path="matching" element={<Matching />} />
+          <Route path="confirm" element ={<Confirm />}/>
+          <Route path="confirmList" element ={<ConfirmList />}/>
+          <Route path="login" element ={<Login />}/>
+          <Route path="join" element ={<Join />}/>
+          <Route path="findid" element ={<FindId />}/>
+          <Route path="reset" element ={<ResetPassword />}/>
       </Route>
 
     </Routes>

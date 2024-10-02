@@ -1,4 +1,10 @@
 import React from 'react';
+import styled from "styled-components";
+
+const Block = styled.div`
+    display: flex;
+    margin-top: 1rem;
+`;
 
 function Symbol(props){
 
@@ -20,7 +26,7 @@ function Symbol(props){
 
 
 return (
-<div>
+<Block>
 <style>
     {`
      .material-symbols-outlined {
@@ -48,7 +54,7 @@ check_box_outline_blank
 close 
 </span>
 <span>: delete</span>
-</div>
+</Block>
 
 
     );
