@@ -17,6 +17,7 @@ const MainContent = styled.div`
 
 const Title = styled.h1`
   color: green;
+  font-size: 3em;
   `;
 
 function LogoPage() {

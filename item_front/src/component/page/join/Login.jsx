@@ -1,12 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 // import Button from "../ui/Button";
 
 
 //const UsernameContext = React.createContext();
 //const MatchingnameContext = React.createContext();
 //const IsAuthorOneContext = React.createContext();
+
+const Container = styled.div`
+  display: flex;
+  width: 100vw;
+	// height: 100vh;	
+`;
+
+const MainContent = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Block = styled.div`
+  display: flex;
+  justify-content: space-between;
+  // border: 2px solid black;
+  width: 260px;
+`;
+
+const LeftBlock = styled.div`
+`;
+
+const RightBlock = styled.div`
+`;
+
+const ButtonBlock = styled.div`
+  margin-top: 2px;
+`;
+
+
+
+
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -125,6 +160,8 @@ function Login() {
       //<MatchingnameContext.Provider value={matchingname}/>
       //<IsAuthorOneContext.Provider value={isAuthorOne}/>
   return (
+    <Container>
+    <MainContent>
     <div>
       {/* {isLoggedIn ? (
         <div>
@@ -140,28 +177,43 @@ function Login() {
         <form onSubmit={handleLogin}>
         <div>
           <h1>로그인</h1>
-          <div>
-          <label>아이디:</label>
+          <Block>
+          <LeftBlock>
+          <label>아이디 :</label>
+          </LeftBlock>
+          <RightBlock>
           <input
           type="text"
           name="userid"
           value={formData.userid}
           onChange={handleChange}
           />
-          </div>
-          <div>
-          <label>비밀번호:</label>
+          </RightBlock>
+          </Block>
+          <Block>
+          <LeftBlock>
+          <label>비밀번호 :</label>
+          </LeftBlock>
+          <RightBlock>
           <input
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
           />
-          </div>
+          </RightBlock>
+          </Block>
+          <Block>
+          <LeftBlock/>
+          <ButtonBlock>
           <button type="submit">로그인</button>
+          </ButtonBlock>
+          </Block>
         </div>
         </form>
     </div>
+    </MainContent>
+    </Container>
   );
 }
 

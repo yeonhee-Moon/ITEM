@@ -2,6 +2,26 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ConfirmList from './ConfirmList';
 import { useSearchParams } from 'react-router-dom';
+import styled from "styled-components";
+
+const Block = styled.div`
+  display: flex;
+  justify-content: space-between;
+  // border: 2px solid black;
+  width: 300px;
+`;
+
+const LeftBlock = styled.div`
+`;
+
+const RightBlock = styled.div`
+`;
+
+const ButtonBlock = styled.div`
+  margin-top: 2px;
+`;
+
+
 
 function Confirm() {
   const [searchParams] = useSearchParams();
@@ -97,8 +117,11 @@ function Confirm() {
     <div>
     <form onSubmit={handleSubmit}>
        <h1>확인해주세요</h1>
-      <div>
+      <Block>
+      <LeftBlock>
         <label>글:</label>
+      </LeftBlock>
+      <RightBlock>
           <input
           type="text"
           name="text"
@@ -106,18 +129,28 @@ function Confirm() {
           onChange={handleDescriptionChange}
           placeholder="Enter description" 
           />
-      </div>
-      <div>
+      </RightBlock>
+      </Block>
+      <Block>
+      <LeftBlock>
         <label>사진:</label>
+      </LeftBlock>
+      <RightBlock>
           <input
           type="file"
           name="image"
           onChange={handleImageChange}
           />
+      </RightBlock>
+      </Block>
           {image && <img src={image} alt="Fetched Image" />}
-        </div>
-      <button type="submit" name="buttonInsert" >제출</button>
-      <button type="submit" name="buttonUpdate" >수정</button>
+      <Block>
+        <LeftBlock/>
+         <ButtonBlock>
+         <button type="submit" name="buttonInsert" >제출</button>
+         <button type="submit" name="buttonUpdate" >수정</button>
+        </ButtonBlock>
+      </Block>
     </form>
     <ConfirmList condition={isButtonClicked}/>
     </div>

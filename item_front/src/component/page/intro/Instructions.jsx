@@ -59,6 +59,7 @@ const SideContent = styled.div`
 const Title = styled.h1`
   text-align: center;
   color: green;
+  font-size: 3em;
   `;
 
 function Instructions(props) {

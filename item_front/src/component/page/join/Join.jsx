@@ -1,6 +1,37 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  width: 100vw;
+	// height: 100vh;	
+`;
+
+const MainContent = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Block = styled.div`
+  display: flex;
+  justify-content: space-between;
+  // border: 2px solid black;
+  width: 260px;
+`;
+
+const LeftBlock = styled.div`
+`;
+
+const RightBlock = styled.div`
+`;
+
+const ButtonBlock = styled.div`
+  margin-top: 2px;
+`;
 
 function Join() {
   const [formData, setFormData] = useState({
@@ -43,46 +74,76 @@ function Join() {
   };
 
   return (
+
+    <Container>
+    <MainContent>
+    <div>
     <form onSubmit={handleSubmit}>
-       <h1>회원 가입</h1>
       <div>
-        <label>이름:</label>
+       <h1>회원 가입</h1>
+        <Block>
+        <LeftBlock>
+        <label>이름 : </label>
+        </LeftBlock>
+        <RightBlock>
           <input
           type="text"
           name="username"
           value={formData.username}
           onChange={handleChange}
           />
-      </div>
-      <div>
-        <label>아이디:</label>
+        </RightBlock>
+        </Block>
+        <Block>
+        <LeftBlock>
+        <label>아이디 : </label>
+        </LeftBlock>
+        <RightBlock>
           <input
           type="text"
           name="userid"
           value={formData.userid}
           onChange={handleChange}
           />
-        </div>
-       <div>
-        <label>비밀번호:</label>
+        </RightBlock>
+        </Block>
+        <Block>
+        <LeftBlock>
+        <label>비밀번호 : </label>
+        </LeftBlock>
+        <RightBlock>
           <input
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
           />
-      </div>
-      <div>
-        <label>이메일:</label>
+        </RightBlock>
+        </Block>
+        <Block>
+        <LeftBlock>
+        <label>이메일 : </label>
+        </LeftBlock>
+        <RightBlock>
           <input
           type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
           />
+        </RightBlock>
+        </Block>
+        <Block>
+          <LeftBlock/>
+          <ButtonBlock>
+          <button type="submit">제출</button>
+          </ButtonBlock>
+        </Block>
       </div>
-      <button type="submit">제출</button>
     </form>
+    </div>
+    </MainContent>
+    </Container>
   );
 }
 

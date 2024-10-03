@@ -2,6 +2,38 @@ import React, { useState  }from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  width: 100vw;
+	// height: 100vh;	
+`;
+
+const MainContent = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Block = styled.div`
+  display: flex;
+  justify-content: space-between;
+  // border: 2px solid black;
+  width: 260px;
+`;
+
+const LeftBlock = styled.div`
+`;
+
+const RightBlock = styled.div`
+`;
+
+const ButtonBlock = styled.div`
+  margin-top: 2px;
+`;
+
 
 const FindId = () => {
   const [formData, setFormData] = useState({
@@ -42,39 +74,58 @@ const FindId = () => {
   };
 
   return (
+    <Container>
+    <MainContent>
     <div>
     <form onSubmit={handleFindUserid}>
     <div>
       <h2>아이디 찾기</h2>
-      <div>
-      <label>
-        이름:
+      <Block>
+      <LeftBlock>
+      <label>이름 : </label>
+      </LeftBlock>
+      <RightBlock>
         <input
         type="text"
         name="username"
         value={formData.username}
         onChange={handleChange} />
-      </label>
-      </div>
-      <div>
-      <label>
-        이메일:
+      </RightBlock>
+      </Block>
+      <Block>
+      <LeftBlock>
+      <label>이메일 : </label>
+      </LeftBlock>
+      <RightBlock>
         <input
         type="email"
         name="email"
         value={formData.email}
         onChange={handleChange} />
-      </label>
-      </div>
-      <button type="submit">아이디 찾기</button>
+      </RightBlock>
+      </Block>
+      <Block>
+        <LeftBlock/>
+        <ButtonBlock>
+          <button type="submit">아이디 찾기</button>
+        </ButtonBlock>
+      </Block>
+     
       {userid && <p>찾은 아이디: {userid}</p>}
-    </div>
+      </div>
     </form>
-    <Button title="HOME"
-      onClick={() => {
-        navigate("/main");
-      }}/>
+    <Block>
+        <LeftBlock/>
+        <ButtonBlock>
+        <Button title="HOME"
+          onClick={() => {
+          navigate("/main");
+         }}/>
+        </ButtonBlock>
+    </Block>
     </div>
+    </MainContent>
+    </Container>
   );
 };
 

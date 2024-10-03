@@ -2,6 +2,37 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  width: 100vw;
+	// height: 100vh;	
+`;
+
+const MainContent = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Block = styled.div`
+  display: flex;
+  justify-content: space-between;
+  // border: 2px solid black;
+  width: 300px;
+`;
+
+const LeftBlock = styled.div`
+`;
+
+const RightBlock = styled.div`
+`;
+
+const ButtonBlock = styled.div`
+  margin-top: 2px;
+`;
 
 
 const ResetPassword = () => {
@@ -55,38 +86,58 @@ const ResetPassword = () => {
   };
 
   return (
+    <Container>
+    <MainContent>
     <div>
     <form onSubmit={handleResetPassword}>
     <div>
       <h2>비밀번호 재설정</h2>
-      <div>
-      <label>
-        아이디:
+      <Block>
+      <LeftBlock>
+      <label>아이디 : </label>
+      </LeftBlock>
         <input type="text" name="userid" value={formData.userid} onChange={handleChange} />
-      </label>
-      </div>
-      <div>
-      <label>
-        새 비밀번호:
+
+      </Block>
+      <Block>
+      <LeftBlock>
+      <label>새 비밀번호 : </label>
+      </LeftBlock>
+      <RightBlock>
         <input type="password" name="password" value={formData.password} onChange={handleChange} />
-      </label>
-      </div>
-      <div>
-      <label>
-        확인 비밀번호:
+      </RightBlock>
+      </Block>
+      <Block>
+      <LeftBlock>
+      <label>확인 비밀번호 : </label>
+      </LeftBlock>
+      <RightBlock>
         <input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} />
-      </label>
-      </div>
-      <button type="submit">비밀번호 재설정</button>
+      </RightBlock>
+      </Block>
+      <Block>
+        <LeftBlock/>
+        <ButtonBlock>
+        <button type="submit">비밀번호 재설정</button>
+        </ButtonBlock>
+      </Block>
+      
       {resetSuccess && <p>비밀번호가 성공적으로 재설정되었습니다.</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
     </form>
-     <Button title="HOME"
-     onClick={() => {
-       navigate("/main");
-     }}/>
+    <Block>
+        <LeftBlock/>
+        <ButtonBlock>
+        <Button title="HOME"
+          onClick={() => {
+          navigate("/main");
+        }}/>
+        </ButtonBlock>
+      </Block> 
      </div>
+     </MainContent>
+     </Container>
   );
 };
 

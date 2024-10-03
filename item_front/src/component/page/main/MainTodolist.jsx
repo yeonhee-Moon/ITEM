@@ -52,7 +52,7 @@ const TodoInput = styled.input`
 
   &:focus-visible {
       outline-color: greenyellow;
-      color: greenyellow;
+      color: black;
       transform: translateY(2px); /* 버튼을 아래로 살짝 이동 */
 
       &::placeholder {
