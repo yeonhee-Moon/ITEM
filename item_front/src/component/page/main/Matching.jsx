@@ -138,6 +138,7 @@ function Matching() {
         }
       } catch (error) {
         console.error('오류 발생:', error);
+        alert('팀매칭 실패: 아이디를 확인하세요.');
       }
     };
   

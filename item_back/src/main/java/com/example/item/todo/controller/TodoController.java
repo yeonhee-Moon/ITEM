@@ -67,6 +67,7 @@ public class TodoController{
 	@DeleteMapping("/deletetodo/{id}")
 	public void deleteTodo(@PathVariable Long id) {
         todoService.deleteTodo(id);
+        todoService.deleteConfirm(id);
    }
 	
 //	@PostMapping("/confirm")

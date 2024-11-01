@@ -15,4 +15,5 @@ public interface TodoMapper {
     void updateConfirm(Todo todo);
     void updateLine(Todo todo);
     void deleteTodo(Long id);
+    void deleteConfirm(Long id);
 }

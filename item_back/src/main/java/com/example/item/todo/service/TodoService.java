@@ -38,4 +38,7 @@ public class TodoService {
     public void deleteTodo(Long id) {
         todoMapper.deleteTodo(id);
     }
+    public void deleteConfirm(Long id) {
+        todoMapper.deleteConfirm(id);
+    }
 }

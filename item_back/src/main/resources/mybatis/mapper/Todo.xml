@@ -36,5 +36,9 @@
     <delete id="deleteTodo" parameterType="Long">
         DELETE FROM todolist WHERE ID = #{id}
     </delete>
+    
+    <delete id="deleteConfirm" parameterType="Long">
+        DELETE FROM confirmlist WHERE ID = #{id}
+    </delete>
 
 </mapper>

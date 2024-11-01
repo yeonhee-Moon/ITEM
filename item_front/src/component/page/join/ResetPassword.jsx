@@ -61,6 +61,7 @@ const ResetPassword = () => {
     try {
       if (formData.password !== confirmPassword) {
         setError('비밀번호와 확인 비밀번호가 일치하지 않습니다.');
+        setResetSuccess(false);
         return;
       }
         const response = await axios.post('http://localhost:3000/item/reset', formDataObject, {
