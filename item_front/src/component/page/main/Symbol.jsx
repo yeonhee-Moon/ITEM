@@ -38,19 +38,19 @@ return (
        }
      `}
 </style>
-<span style={CompleteStyle} class="material-symbols-outlined">
+<span style={CompleteStyle} className="material-symbols-outlined">
 check
 </span>
 <span> : complete</span>
-<span style={ConfirmStyle} class="material-symbols-outlined">
+<span style={ConfirmStyle} className="material-symbols-outlined">
 radio_button_checked
 </span>
 <span> : confirm</span>
-<span style={TutorStyle} class="material-symbols-outlined">
+<span style={TutorStyle} className="material-symbols-outlined">
 check_box_outline_blank
 </span>
 <span> : tutor</span>
-<span style={DeleteStyle} class="material-symbols-outlined">
+<span style={DeleteStyle} className="material-symbols-outlined">
 close 
 </span>
 <span>: delete</span>

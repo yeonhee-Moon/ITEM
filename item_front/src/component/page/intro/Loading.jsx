@@ -21,6 +21,7 @@ const Title = styled.h1`
   `;
 
 function LogoPage() {
+  
   const navigate = useNavigate();
   // 2초 뒤 채팅 메인으로 넘어가는 함수 작성
   const timeout = () => {

@@ -44,7 +44,7 @@ const buttonStyle = {
       `}
   </style>
   <button style={buttonStyle} onClick={() => {handleButtonClick(); onClick(); }}>
-  <span class="material-symbols-outlined">
+  <span className="material-symbols-outlined">
   check
   </span>
   </button>

@@ -54,7 +54,7 @@ return (
       `}
   </style>
 <button style={buttonStyle} onClick = {() => {handleConfirm(todo.id); handleButtonClick(); onClick();}}>
-<span class="material-symbols-outlined">
+<span className="material-symbols-outlined">
 radio_button_checked
 </span>
 </button>

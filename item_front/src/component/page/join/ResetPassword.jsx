@@ -7,7 +7,6 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   width: 100vw;
-	// height: 100vh;	
 `;
 
 const MainContent = styled.div`
@@ -20,7 +19,6 @@ const MainContent = styled.div`
 const Block = styled.div`
   display: flex;
   justify-content: space-between;
-  // border: 2px solid black;
   width: 300px;
 `;
 

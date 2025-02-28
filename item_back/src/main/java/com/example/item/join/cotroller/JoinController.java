@@ -41,9 +41,11 @@ public class JoinController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> itemLogin(String userid, String password) {
+		
 		Object valueName = null;
 		Object valueAuthor = null;
 		Object valueMatching = null;
+		
 		Map<String, Object> responseData = new HashMap<>();
 		
 		try {
@@ -90,16 +92,6 @@ public class JoinController {
 			// NullPointerException이 발생했을 때 처리할 코드
 		    // 여기에는 아무런 동작이나 로깅 등을 할 수 있음
 		    // 아무것도 하지 않고 무시하려면 비워둘 수도 있음
-	        if(valueName != null && valueAuthor == null) {
-	        	valueAuthor =3;
-	        	valueMatching = "매칭해주세요";
-	        	
-		        responseData.put("USER_NAME", valueName);
-		        responseData.put("AUTHOR", valueAuthor);
-		        responseData.put("matchingname", valueMatching);
-		        return ResponseEntity.ok(responseData);
-	        }
-		
 			int exceptInt = 1;
 			Map<String, Object> except = new HashMap<>();
 			except.put("except", exceptInt);

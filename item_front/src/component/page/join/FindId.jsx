@@ -7,7 +7,6 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   width: 100vw;
-	// height: 100vh;	
 `;
 
 const MainContent = styled.div`
@@ -20,7 +19,6 @@ const MainContent = styled.div`
 const Block = styled.div`
   display: flex;
   justify-content: space-between;
-  // border: 2px solid black;
   width: 260px;
 `;
 
@@ -58,7 +56,6 @@ const FindId = () => {
     formDataObject.append('username', formData.username);
     formDataObject.append('email', formData.email);
     
-    // Axios로 POST 요청 보내기
     try {
       const response = await axios.post('http://localhost:3000/item/findid', formDataObject, {
         headers: {

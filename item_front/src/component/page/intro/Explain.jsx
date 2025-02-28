@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 
-
-function Explain(props){
-
 const InputArea = styled.div`
   border: 2px solid black;
 //   padding: '10px';
@@ -19,8 +16,8 @@ const ButtonBlock = styled.div`
 flex-direction: column;
 `;
 
-const ButtonName = styled.div`
-`;
+// const ButtonName = styled.div`
+// `;
 
 const Block = styled.div`
 height: 100vh;
@@ -30,6 +27,9 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 `;
+
+function Explain(props){
+
 
  const CompleteStyle = {
     color: 'red',
@@ -69,16 +69,16 @@ return (
        }
      `}
 </style>
-<span style={CompleteStyle} class="material-symbols-outlined">
+<span style={CompleteStyle} className="material-symbols-outlined">
 check
 </span>
-<span style={ConfirmStyle} class="material-symbols-outlined">
+<span style={ConfirmStyle} className="material-symbols-outlined">
 radio_button_checked
 </span>
-<span style={TutorStyle} class="material-symbols-outlined">
+<span style={TutorStyle} className="material-symbols-outlined">
 check_box_outline_blank
 </span>
-<span style={DeleteStyle} class="material-symbols-outlined">
+<span style={DeleteStyle} className="material-symbols-outlined">
 close 
 </span>
 </ButtonArea>
@@ -98,7 +98,7 @@ close
      `}
 </style>
 <div>
-<span style={{ color: 'red' }} class="material-symbols-outlined">
+<span style={{ color: 'red' }} className="material-symbols-outlined">
 check
 </span>
 <span>
@@ -107,7 +107,7 @@ check
 <div>complete</div>
 </div>
 <div>
-<span style={{ color: 'orange' }} class="material-symbols-outlined">
+<span style={{ color: 'orange' }} className="material-symbols-outlined">
 radio_button_checked
 </span>
 <span>
@@ -116,7 +116,7 @@ radio_button_checked
 <div>confirm</div>
 </div>
 <div>
-<span style={{ color: 'blue' }} class="material-symbols-outlined">
+<span style={{ color: 'blue' }} className="material-symbols-outlined">
 check_box_outline_blank
 </span>
 <span>
@@ -125,7 +125,7 @@ check_box_outline_blank
 <div>tutor</div>
 </div>
 <div>
-<span style={{ color: 'black' }} class="material-symbols-outlined">
+<span style={{ color: 'black' }} className="material-symbols-outlined">
 close 
 </span>
 <span>

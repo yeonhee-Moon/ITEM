@@ -80,21 +80,16 @@ function MainTodolist(props) {
   
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const location = useLocation();
-  // const { value } = location.state || { value: false }; // 값이 없을 때를 대비해 기본값 설정
-  // setIsLoggedIn(value);
+  const [todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState('');
+  const [updateId, setUpdateId] = useState(null);
+
   const storedTeam = localStorage.getItem('team');
   const username = localStorage.getItem('username');
   const matchingname = localStorage.getItem('matchingname');
   const isAuthorOne = localStorage.getItem('isAuthorOne');
   const isAuthorTwo = localStorage.getItem('isAuthorTwo');
-  //const username =useContext(UsernameContext);
-  //const matchingname =useContext(MatchingnameContext);
-  //const isAuthorOne =useContext(IsAuthorOneContext);
 
-  const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState('');
-  const [updateId, setUpdateId] = useState(null);
 
   useEffect(() => {
     const authToken = localStorage.getItem('isLoggedIn');
@@ -112,13 +107,9 @@ function MainTodolist(props) {
       if (currentTime > parseInt(expirationTime)) {
         // 세션이 만료되었을 때 로그아웃
         handleLogout();
-        // navigate("/login");
+       
       } 
-      // else {
-      //   setIsLoggedIn(true);
-      // //   //setIsAuthorOne(true);
-      // //   //setIsAuthorTwo(true);
-      // }
+      
     }
   }, []);
 
@@ -213,10 +204,6 @@ function MainTodolist(props) {
   
     setIsLoggedIn(false);
 
-    // 페이지 새로고침
-    // navigate('/login'); // 로그인 페이지로 이동
-    // window.location.reload(); // 강제로 페이지 새로고침하여 캐시 무효화
-   
   };
 
   const handleLogin = () => {

@@ -35,7 +35,7 @@ function DeleteButton(props){
         `}
     </style>
     <button style={buttonStyle} onClick={onClick}>
-    <span class="material-symbols-outlined">
+    <span className="material-symbols-outlined">
     close
     </span>
     </button>

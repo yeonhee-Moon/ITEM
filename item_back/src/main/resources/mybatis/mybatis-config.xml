@@ -8,5 +8,6 @@
     <mapper resource="Reset.xml"/>
     <mapper resource="Matching.xml"/>
     <mapper resource="Todo.xml"/>
+    <mapper resource="Confirm.xml"/>
   </mappers>
 </configuration>
