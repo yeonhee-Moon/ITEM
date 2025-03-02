@@ -30,19 +30,14 @@ function Confirm() {
   const [description, setDescription] = useState('');
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  // const [formData, setFormData] = useState({
-  //   id: {id},
-  //   text: description,
-  //   image: image,
-  // });
 
   const formDataObject = new FormData();
   formDataObject.append('id', `${id}`);
   formDataObject.append('text', description);
   if (image) {
-    formDataObject.append('image', image); // 이미지가 있을 때만 추가
+    formDataObject.append('image', image); 
   }
-  // formDataObject.append('image', image);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -90,15 +85,9 @@ function Confirm() {
     setIsButtonClicked(!isButtonClicked);
   };
 
-  // const handleChange = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
 
   const handleDescriptionChange = (e) => {
-    setDescription(e.target.value); // 글 내용 설정
+    setDescription(e.target.value); 
   };
 
 
@@ -107,11 +96,7 @@ function Confirm() {
     setImage(selectedImage);
   };
 
-  //  const handleImageChange = (e) => {
-  //   const selectedImage = e.target.files[0];
-  //   setImage(selectedImage);
-
-  //  };
+  
 
   return (
     <div>

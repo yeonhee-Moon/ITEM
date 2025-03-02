@@ -41,7 +41,6 @@ function UpdateInput({todo, updateTodo}) {
   
       
     };
-  // console.log('title : ',exceptTodo);
   
     return (
         <input

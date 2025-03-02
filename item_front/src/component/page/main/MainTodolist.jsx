@@ -230,9 +230,9 @@ function MainTodolist(props) {
 
      {isLoggedIn === false ? (null
      ) : (
-    <div> 
-    {((isAuthorOne ==='false') && (isAuthorTwo ==='false')) ? null : (<p>{isAuthorOne==='true'? '🧑‍💻' : '🧑‍🏫'} {username} {isAuthorOne==='true'? '튜티' : '튜터'}</p>)}
-    {matchingname !=='매칭해주세요'? (<p>{isAuthorOne==='true'? '🧑‍🏫' : '🧑‍💻'} {matchingname} {isAuthorOne==='true'? '튜터' : '튜티'}</p>) : <p>{username} 님 매칭해주세요</p>}
+    <div>
+    {((isAuthorOne ==='false') && (isAuthorTwo ==='false')) ? null : (<p>{isAuthorOne==='true'? `🧑‍💻 ${username} 튜티` : `🧑‍🏫 ${username} 튜터`}</p>)}
+    {matchingname !=='매칭해주세요'? (<p>{isAuthorOne==='true'? `🧑‍🏫 ${matchingname} 튜터` : `🧑‍💻 ${matchingname} 튜티`} </p>) : <p>{username} 님 매칭해주세요</p>}
     </div>
      )}
     
@@ -251,7 +251,6 @@ function MainTodolist(props) {
             value={newTodo}
             placeholder="Add Note"
             onChange={(e) => {
-              console.log('e', e);
               setNewTodo(e.target.value);
             }}
             onKeyUp={handleKeyUp}

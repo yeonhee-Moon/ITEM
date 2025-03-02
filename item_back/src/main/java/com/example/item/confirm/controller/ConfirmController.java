@@ -30,12 +30,6 @@ public class ConfirmController {
 								}
 	 	
 	 	
-//	    public void insertConfirm(@RequestParam("image") MultipartFile image,
-//        @RequestParam("text") String descript,
-//        @RequestParam("id") Long id) {
-//confirmService.insertConfirm(id, image, descript);
-//}
-	 	
 	 	@PostMapping("/confirm/update")
 	    public void updateConfirm(@RequestParam(value = "image", required = false) MultipartFile image,
 	                            @RequestParam("text") String descript,
@@ -59,11 +53,6 @@ public class ConfirmController {
 	              );
 	              
 	              return ResponseEntity.ok(imageInfoDTO);
-//	        	ImageInfoDTO imageInfoDTO = new ImageInfoDTO(
-//	            imageInfo.getDescript(), // 텍스트 데이터
-//	            imageInfo.getImage() // 이미지 바이너리 데이터
-//	        );
-//
-//	        return ResponseEntity.ok(imageInfoDTO);
+
 	    }
 }

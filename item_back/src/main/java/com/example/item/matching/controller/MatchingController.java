@@ -73,27 +73,15 @@ public class MatchingController {
 		showTutor.put("AUTHOR", valueAuthorTutor);
 		showTutor.put("TEAM", getMaxTeam);
 		
-//		System.out.println("userid.equals(tuteeid) : " + userid.equals(tuteeid));
-//		System.out.println("resultTutee==1  : " + (resultTutee == 1) );
-//		System.out.println("resultTutor==1 : " + (resultTutor==1));
-//		
-		
+
 		
 		if ( (userid.equals(tutorid)) && (resultTutee==1 && resultTutor==1)) {
 			return ResponseEntity.ok(showTutor);
-//		} else if ( (userid == tuteeid) && (resultTutee==1 && resultTutor==1)) {
 		} else if ( (userid.equals(tuteeid)) && (resultTutee==1 && resultTutor==1)) {
 			return ResponseEntity.ok(showTutee);
 		} else {
-//			System.out.println("userid :" + userid + ", tutorid : " + tutorid + ", tuteeid : " + tuteeid+ ", resultTutee : " + resultTutee + ", resultTutor : " + resultTutor);
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);	
 		}
 		
-//	    if(resultTutee==1 && resultTutor==1) {
-//	    	return ResponseEntity.ok(null);
-//	    } else {
-//	    	return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);	
-//	    }
-
 	}
 }

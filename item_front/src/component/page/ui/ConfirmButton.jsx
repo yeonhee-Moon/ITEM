@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 function ConfirmButton(props){
 const{todo, confirmed, onClick}= props;
+
 var confirmedValue;
   confirmedValue = confirmed;
+
 const [isButtonClicked, setIsButtonClicked] = useState(confirmedValue);
 
 const handleButtonClick = () => {
@@ -15,16 +17,7 @@ const storedIsAuthorTwo = localStorage.getItem('isAuthorTwo');
 
 const navigate = useNavigate();
 
-
-// const handleNavigate = (id) => {
-
-//   navigate(`/confirm?paramName=${id}`);
-// };
-
 const handleConfirm = (id) => {
-  // <Confirm confirmId={id}/>;
-  // <ConfirmList confirmId={id}/>;
-
 
   storedIsAuthorTwo === 'true' ? (
     navigate(`/confirmList?paramName=${id}`)

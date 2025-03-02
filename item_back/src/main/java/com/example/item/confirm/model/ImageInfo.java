@@ -18,20 +18,4 @@ public class ImageInfo {
 		this.image = image;
 	}
 
-//    // Getters and Setters
-//    public String getText() {
-//        return text;
-//    }
-//
-//    public void setText(String text) {
-//        this.text = text;
-//    }
-//
-//    public byte[] getImageData() {
-//        return imageData;
-//    }
-//
-//    public void setImageData(byte[] imageData) {
-//        this.imageData = imageData;
-//    }
 }

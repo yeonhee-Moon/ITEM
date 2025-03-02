@@ -111,7 +111,7 @@ function Matching() {
       formDataObject.append('tuteeid', formData.tuteeid);
       formDataObject.append('userid', storedUserid);
       
-      // Axios로 POST 요청 보내기
+
       try {
         const response = await axios.post('http://localhost:3000/item/matching', formDataObject, {
           headers: {
@@ -125,16 +125,12 @@ function Matching() {
         if (response.data.AUTHOR === '1') {
           localStorage.setItem('isAuthorOne', 'true');
           localStorage.setItem('isAuthorTwo', 'false');
-          //setIsAuthorOne(true);
         } else if (response.data.AUTHOR === '2'){
           localStorage.setItem('isAuthorTwo', 'true');
           localStorage.setItem('isAuthorOne', 'false');
-          //setIsAuthorTwo(true);
         } else {
           localStorage.setItem('isAuthorOne', 'false');
           localStorage.setItem('isAuthorTwo', 'false');
-          //setIsAuthorOne(false);
-          //setIsAuthorTwo(false);
         }
       } catch (error) {
         console.error('오류 발생:', error);
@@ -159,7 +155,7 @@ function Matching() {
       <Form onSubmit={handleSubmit}>
         <MenuTitle>튜터 튜티 매칭</MenuTitle>
         <InputArea>
-          <InfoLabel for="tutorid">🧑‍🏫 튜터‍</InfoLabel>
+          <InfoLabel htmlFor="tutorid">🧑‍🏫 튜터‍</InfoLabel>
           <InfoInput
             type="text"
             name="tutorid"
@@ -170,7 +166,7 @@ function Matching() {
           />
         </InputArea>
         <InputArea>
-          <InfoLabel for="tuteeid">🧑‍💻 튜티</InfoLabel>
+          <InfoLabel htmlFor="tuteeid">🧑‍💻 튜티</InfoLabel>
           <InfoInput
             type="text"
             name="tuteeid"

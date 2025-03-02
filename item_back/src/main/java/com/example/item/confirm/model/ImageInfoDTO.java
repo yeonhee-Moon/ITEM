@@ -33,35 +33,5 @@ public class ImageInfoDTO {
     public void setImageData(byte[] image) {
         this.image = (image != null) ? Base64.getEncoder().encodeToString(image) : null;
     }
-    
-//    public void setImage(byte[] image) {
-//        this.image = Base64.getEncoder().encodeToString(image); // Setter에서도 Base64로 인코딩
-//    }
-    
-    
-//	private String descript;
-//    private byte[] image;
-//
-//    public ImageInfoDTO(String descript, byte[] image) {
-//        this.setDescript(descript);
-//        this.setImage(image);
-//    }
-//
-//	public String getDescript() {
-//		return descript;
-//	}
-//
-//	public void setDescript(String descript) {
-//		this.descript = descript;
-//	}
-//
-//	public byte[] getImage() {
-//		return image;
-//	}
-//
-//	public void setImage(byte[] image) {
-//		this.image = image;
-//	}
-
 
 }

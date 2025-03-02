@@ -4,10 +4,7 @@ public class Confirm {
 	private Long id;
 	private byte[] imageData;
     private String descript;
-    
-//	public Confirm(Long id2, byte[] imageData, String descript2) {
-//		// TODO Auto-generated constructor stub
-//	}
+
 
 	public Confirm() {}
 

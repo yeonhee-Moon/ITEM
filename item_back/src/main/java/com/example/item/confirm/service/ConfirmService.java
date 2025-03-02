@@ -27,14 +27,6 @@ public class ConfirmService {
         confirmMapper.insertConfirm(confirm);
 	}
 		
-//		try {
-//            byte[] imageData = image.getBytes();
-//            Confirm confirm = new Confirm(id, imageData, descript);
-//            confirmMapper.insertConfirm(confirm);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 	
 	public void updateConfirm(Long id, MultipartFile image, String descript) throws IOException {
         byte[] imageData = null;
@@ -45,13 +37,7 @@ public class ConfirmService {
         
         Confirm confirm = new Confirm(id, imageData, descript);
         confirmMapper.updateConfirm(confirm);
-//        try {
-//            byte[] imageData = image.getBytes();
-//            Confirm confirm = new Confirm(id, imageData, descript);
-//            confirmMapper.updateConfirm(confirm);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
     }
 	
 	

@@ -70,19 +70,4 @@ public class TodoController{
         todoService.deleteConfirm(id);
    }
 	
-//	@PostMapping("/confirm")
-//	public ResponseEntity<Object> itemTodo(String username) {
-//
-//		Map<String, Object> param = new HashMap<>();
-//		
-//		System.out.println("username: "+ username);
-//
-//		
-//		param.put("username", username);
-//	
-//
-//		int result = todoService.todo(param);
-//		
-// 		return ResponseEntity.ok(result);
-//	}
 }
